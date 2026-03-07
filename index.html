@@ -25,43 +25,25 @@
         .content-section { display: none; animation: fadeIn 0.4s ease-out; }
         .content-section.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .sys-card { border: 1px solid #e2e8f0; background: white; transition: all 0.3s; overflow: hidden; display: flex; flex-direction: column; border-radius: 12px; position: relative; }
-        .card-img-wrap { position: relative; width: 100%; aspect-ratio: 3 / 4.2; overflow: hidden; background: #f8fafc; }
+        
+        .sys-card { border: 1px solid #e2e8f0; background: white; border-radius: 12px; overflow: hidden; transition: all 0.3s; position: relative; }
+        .card-img-wrap { width: 100%; aspect-ratio: 3 / 4.2; overflow: hidden; background: #f8fafc; }
         .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
         .card-rank-tag { position: absolute; top: 6px; left: 6px; z-index: 10; backdrop-filter: blur(4px); background: rgba(30, 41, 59, 0.7); color: white; padding: 1px 6px; border-radius: 4px; font-size: 9px; }
-        .rank-badge { font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 4px; font-family: 'Orbitron'; }
+        
+        .alert-banner { background: linear-gradient(90deg, #ef4444, #b91c1c); color: white; padding: 10px; border-radius: 8px; font-family: 'Orbitron'; }
+        .stat-bar-bg { background: rgba(255,255,255,0.1); height: 6px; border-radius: 3px; overflow: hidden; }
         .custom-scroll::-webkit-scrollbar { width: 4px; height: 4px; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        
-        /* Mobile Specific Modal */
-        #charModal { backdrop-filter: blur(12px); padding: 0; }
-        .modal-container { 
-            max-height: 100vh; 
-            width: 100%; 
-            max-width: 1100px; 
-            border-radius: 0;
-        }
-        @media (min-width: 768px) {
-            #charModal { padding: 1rem; }
-            .modal-container { border-radius: 1.5rem; max-height: 90vh; width: 95%; }
-        }
-        /* 여론/커뮤니티 스타일링 */
-    .feed-card { background: #f8fafc; border-radius: 12px; padding: 12px; border: 1px solid #e2e8f0; margin-bottom: 10px; }
-    .feed-user { font-weight: 800; font-size: 11px; color: #64748b; margin-bottom: 4px; display: flex; justify-content: space-between; }
-    .feed-content { font-size: 12px; color: #1e293b; line-height: 1.5; }
-    .tag-trend { color: #0084ff; font-weight: 600; font-size: 10px; }
-    
-    /* 시스템 경보 스타일링 */
-    .alert-banner { background: linear-gradient(90deg, #ef4444, #b91c1c); color: white; padding: 10px; border-radius: 8px; font-family: 'Orbitron'; animation: pulse 2s infinite; }
-    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.8; } 100% { opacity: 1; } }
 
-    /* 상태바 */
-    .stat-bar-bg { background: #e2e8f0; height: 6px; border-radius: 3px; overflow: hidden; }
+        #charModal { backdrop-filter: blur(12px); }
+        .modal-container { background: white; width: 100%; max-width: 1100px; border-radius: 0; display: flex; flex-direction: column; overflow: hidden; }
+        @media (min-width: 768px) { .modal-container { border-radius: 1.5rem; max-height: 90vh; flex-direction: row; } }
     </style>
 </head>
 <body class="p-4 md:p-10">
 
-    <header class="max-w-7xl mx-auto mb-6 md:mb-10 border-b-2 border-slate-900 pb-4">
+    <header id="main-header" class="max-w-7xl mx-auto mb-6 md:mb-10 border-b-2 border-slate-900 pb-4" style="display: none;">
         <div class="flex justify-between items-end mb-4 md:mb-6">
             <h1 class="orbitron text-lg md:text-3xl font-black italic tracking-tighter text-slate-900">HUNTER <span class="text-blue-600">ARCHIVE</span></h1>
             <div class="flex flex-col items-end">
@@ -75,117 +57,73 @@
         </nav>
     </header>
 
-    <div class="max-w-7xl mx-auto">
-<main id="section-world" class="content-section active">
-    <div class="alert-banner flex items-center justify-between px-4 md:px-6 mb-6">
-        <div class="flex items-center gap-3">
-            <span class="w-2 h-2 bg-white rounded-full animate-ping"></span>
-            <span class="text-[10px] md:text-xs font-black tracking-widest uppercase">Critical: Gate Break Imminent</span>
+    <div id="prologue-screen" class="max-w-4xl mx-auto py-12 px-4 space-y-10">
+        <div class="rounded-3xl overflow-hidden shadow-2xl border border-slate-200 aspect-video mb-10">
+            <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/4.webp" alt="Awakening" class="w-full h-full object-cover">
         </div>
-        <span class="text-[9px] md:text-[10px] opacity-80 orbitron">Sector-7 / Class: B</span>
+        <section class="space-y-8 text-center">
+            <div class="inline-block px-4 py-1 border border-blue-500 text-blue-500 orbitron text-[10px] font-black tracking-[0.3em] uppercase mb-4">System Awakened</div>
+            <div class="space-y-6">
+                <p class="text-xl md:text-2xl font-bold italic leading-relaxed text-slate-800">"모든 것은 그날 시작되었다."</p>
+                <p class="text-slate-500 leading-relaxed">평범했던 일상은 궤도를 벗어났고,<br>당신은 <span class="text-blue-600 font-bold">에녹</span>에 의해 각성자로 선택되었다.</p>
+                <p class="text-slate-500">이제 당신 앞에는 헌터로서의 새로운 세계와 운명이 펼쳐집니다.</p>
+            </div>
+        </section>
+        <div class="text-center pt-10">
+            <button onclick="startArchive()" class="orbitron px-12 py-5 bg-slate-900 text-white rounded-2xl font-black tracking-widest text-sm hover:bg-blue-600 transition-all shadow-xl">REGISTER AS HUNTER</button>
+        </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
-        <div class="lg:col-span-8 space-y-6 md:space-y-8">
-            <section class="bg-slate-900 text-white p-6 md:p-8 rounded-2xl md:rounded-3xl relative overflow-hidden shadow-2xl">
-                <div class="absolute top-0 right-0 p-4 orbitron text-5xl md:text-7xl font-black opacity-5 uppercase select-none pointer-events-none">Status</div>
-                <h2 class="orbitron text-xl md:text-2xl font-bold mb-6 text-blue-400 tracking-widest">SYSTEM INTERFACE</h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    <div class="space-y-5">
-                        <p class="text-sm text-slate-300 font-medium leading-relaxed">
-                            <span class="text-blue-400 font-bold">마력 인터페이스:</span> 각성자에게 각인된 고유 각인. 타인에게는 보이지 않는 비물질적 홀로그램 형태로 출력됩니다.
-                        </p>
-                        <div class="p-5 bg-white/5 rounded-2xl border border-white/10 space-y-4 backdrop-blur-sm">
-                            <div>
-                                <div class="flex justify-between text-[10px] orbitron mb-1.5 font-bold tracking-wider"><span>MANA REBOUND</span><span class="text-blue-400">24%</span></div>
-                                <div class="stat-bar-bg"><div class="stat-bar-fill bg-blue-500 shadow-[0_0_10px_#3b82f6]" style="width: 24%"></div></div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between text-[10px] orbitron mb-1.5 font-bold tracking-wider"><span>MENTAL FATIGUE</span><span class="text-amber-400">68%</span></div>
-                                <div class="stat-bar-bg"><div class="stat-bar-fill bg-amber-500 shadow-[0_0_10px_#f59e0b]" style="width: 68%"></div></div>
+    <div id="main-content" class="max-w-7xl mx-auto" style="display: none;">
+        <main id="section-world" class="content-section active">
+            <div class="alert-banner flex items-center justify-between px-4 md:px-6 mb-6">
+                <div class="flex items-center gap-3"><span class="w-2 h-2 bg-white rounded-full animate-ping"></span><span class="text-[10px] md:text-xs font-black tracking-widest uppercase">Critical: Gate Break Imminent</span></div>
+                <span class="text-[9px] md:text-[10px] opacity-80 orbitron">Sector-7 / Class: B</span>
+            </div>
+            <div class="grid grid-cols-1 gap-6 md:gap-8">
+                <section class="bg-slate-900 text-white p-6 md:p-10 rounded-3xl relative overflow-hidden shadow-2xl">
+                    <div class="absolute top-0 right-0 p-4 orbitron text-6xl md:text-9xl font-black opacity-5 uppercase select-none pointer-events-none">Status</div>
+                    <h2 class="orbitron text-xl md:text-2xl font-bold mb-8 text-blue-400 tracking-widest">SYSTEM INTERFACE</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                        <div class="space-y-6">
+                            <p class="text-sm md:text-base text-slate-300 font-medium leading-relaxed"><span class="text-blue-400 font-bold">마력 인터페이스:</span> 각성자에게 각인된 고유 각인.</p>
+                            <div class="p-6 bg-white/5 rounded-2xl border border-white/10 space-y-5 backdrop-blur-sm">
+                                <div>
+                                    <div class="flex justify-between text-[10px] orbitron mb-2 font-bold tracking-wider"><span>MANA REBOUND</span><span class="text-blue-400">24%</span></div>
+                                    <div class="stat-bar-bg"><div class="bg-blue-500 h-full" style="width: 24%"></div></div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-[10px] orbitron mb-2 font-bold tracking-wider"><span>MENTAL FATIGUE</span><span class="text-amber-400">68%</span></div>
+                                    <div class="stat-bar-bg"><div class="bg-amber-500 h-full" style="width: 68%"></div></div>
+                                </div>
                             </div>
                         </div>
+                        <ul class="text-xs md:text-sm text-slate-400 space-y-4 border-l border-white/10 pl-8">
+                            <li><span class="text-blue-500">▶</span> <b class="text-white">등급 평가:</b> 현상 개입 범위 기준.</li>
+                            <li><span class="text-blue-500">▶</span> <b class="text-white">부작용:</b> 마력 역류 발생 가능.</li>
+                        </ul>
                     </div>
-                    <ul class="text-[11px] md:text-xs text-slate-400 space-y-3 border-l border-white/10 pl-6">
-                        <li class="flex gap-2"><span class="text-blue-500">▶</span> <span><b class="text-white">등급 평가:</b> 단순 전투력이 아닌 현상 개입 범위(Range of Influence) 기준.</span></li>
-                        <li class="flex gap-2"><span class="text-blue-500">▶</span> <span><b class="text-white">부작용:</b> 고등급 스킬 사용 시 일시적 신경 마비 또는 마력 역류 발생 가능.</span></li>
-                        <li class="flex gap-2"><span class="text-blue-500">▶</span> <span><b class="text-white">희귀 특화:</b> 특정 속성이나 환경에서만 S급 효율을 내는 변수 존재.</span></li>
-                    </ul>
-                </div>
-            </section>
-
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-                <div class="bg-white border p-4 rounded-xl shadow-sm hover:border-blue-200 transition-colors">
-                    <h4 class="orbitron text-[9px] font-bold text-slate-400 mb-2 tracking-tighter uppercase">Gate Log</h4>
-                    <p class="text-xs font-bold text-slate-900">일반 게이트</p>
-                    <p class="text-[10px] text-slate-500 mt-1 leading-tight">측정 등급과 난이도 일치. 표준 공략 가능.</p>
-                </div>
-                <div class="bg-red-50 border border-red-100 p-4 rounded-xl shadow-sm hover:border-red-200 transition-colors">
-                    <h4 class="orbitron text-[9px] font-bold text-red-400 mb-2 tracking-tighter uppercase">Alert</h4>
-                    <p class="text-xs font-bold text-red-700">게이트 브레이크</p>
-                    <p class="text-[10px] text-red-600/70 mt-1 leading-tight">방치 시 마물 유출. 즉시 전면 통제 필요.</p>
-                </div>
-                <div class="bg-purple-50 border border-purple-100 p-4 rounded-xl shadow-sm">
-                    <h4 class="orbitron text-[9px] font-bold text-purple-400 mb-2 tracking-tighter uppercase">Critical</h4>
-                    <p class="text-xs font-bold text-purple-700">레드 게이트</p>
-                    <p class="text-[10px] text-purple-600/70 mt-1 leading-tight">내부 변질. 공간 왜곡 및 통신 두절 발생.</p>
-                </div>
-                <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl shadow-sm">
-                    <h4 class="orbitron text-[9px] font-bold text-slate-400 mb-2 tracking-tighter uppercase">Artifact</h4>
-                    <p class="text-xs font-bold text-slate-700">마력 잔재</p>
-                    <p class="text-[10px] text-slate-500 mt-1 leading-tight">클리어 후에도 오염 구역 형성. 사후 정화 필수.</p>
+                </section>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-white border p-5 rounded-xl shadow-sm hover:border-blue-200 transition-colors">
+                        <h4 class="orbitron text-[9px] font-bold text-slate-400 mb-2 tracking-tighter uppercase">Gate Log</h4>
+                        <p class="text-sm font-bold text-slate-900">일반 게이트</p>
+                    </div>
+                    <div class="bg-red-50 border border-red-100 p-5 rounded-xl shadow-sm">
+                        <h4 class="orbitron text-[9px] font-bold text-red-400 mb-2 tracking-tighter uppercase">Alert</h4>
+                        <p class="text-sm font-bold text-red-700">게이트 브레이크</p>
+                    </div>
+                    <div class="bg-purple-50 border border-purple-100 p-5 rounded-xl shadow-sm">
+                        <h4 class="orbitron text-[9px] font-bold text-purple-400 mb-2 tracking-tighter uppercase">Critical</h4>
+                        <p class="text-sm font-bold text-purple-700">레드 게이트</p>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-200 p-5 rounded-xl shadow-sm">
+                        <h4 class="orbitron text-[9px] font-bold text-slate-400 mb-2 tracking-tighter uppercase">Artifact</h4>
+                        <p class="text-sm font-bold text-slate-700">마력 잔재</p>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <div class="lg:col-span-4 space-y-6">
-            <aside class="bg-white border border-slate-200 p-6 rounded-3xl shadow-sm">
-                <h2 class="orbitron text-xs font-black text-slate-900 mb-6 pb-2 border-b-2 border-slate-900 italic uppercase flex justify-between items-center">
-                    <span>Social / Media</span>
-                    <span class="text-[8px] text-blue-500 not-italic animate-pulse">LIVE FEED</span>
-                </h2>
-                
-                <div class="space-y-3 max-h-[400px] overflow-y-auto custom-scroll pr-1">
-                    <div class="feed-card">
-                        <div class="feed-user"><span>@Hunter_Watcher</span><span>방금</span></div>
-                        <p class="feed-content">강남역 인근 마력 수치 대폭발 중. 또 출근길 막히겠네.. <span class="tag-trend">#게이트제보 #강남역</span></p>
-                    </div>
-                    <div class="feed-card border-blue-100 bg-blue-50/20">
-                        <div class="feed-user text-blue-600"><span>[뉴스] 데일리 헌터</span><span>15분 전</span></div>
-                        <p class="feed-content">청룡 길드, 이번 C급 게이트 최단 시간 클리어 기록 경신. 주가 급등 예고.</p>
-                    </div>
-                    <div class="feed-card">
-                        <div class="feed-user"><span>@Citizen_A</span><span>1시간 전</span></div>
-                        <p class="feed-content">집 앞 게이트 잔재 정화가 덜 됐는지 자꾸 환청이 들림. 협회는 대체 뭐하냐?</p>
-                    </div>
-                    <div class="feed-card border-red-200 bg-red-50/40">
-                        <div class="feed-user text-red-500"><span>[RUMOR] Deep_Layer</span><span>3시간 전</span></div>
-                        <p class="feed-content">암시장에 뜬 S급 혈석, 사실은 미등록 각성자 강제 각성 실험 결과물이라는데?</p>
-                    </div>
-                </div>
-
-                <div class="mt-6 pt-6 border-t border-slate-100">
-                    <h3 class="orbitron text-[9px] font-bold text-slate-400 mb-4 tracking-widest uppercase">Economic Index</h3>
-                    <div class="space-y-3">
-                        <div class="flex justify-between items-center">
-                            <span class="text-[11px] text-slate-600 font-medium">마력석(상급) 단가</span>
-                            <span class="text-xs text-blue-600 font-bold">▲ 1,240,000 KRW</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-[11px] text-slate-600 font-medium">헌터 보험 할증률</span>
-                            <span class="text-xs text-red-600 font-bold">▲ 4.5%</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-[11px] text-slate-600 font-medium">길드 기부금 공제율</span>
-                            <span class="text-xs text-slate-900 font-bold">12.0% (동결)</span>
-                        </div>
-                    </div>
-                </div>
-            </aside>
-        </div>
-    </div>
-</main>
+        </main>
 
         <main id="section-factions" class="content-section">
             <div class="flex gap-2 overflow-x-auto pb-4 mb-4 custom-scroll sticky top-0 z-20 bg-white/80 backdrop-blur-sm -mx-4 px-4 pt-2">
@@ -199,51 +137,28 @@
     </div>
 
     <div id="charModal" class="fixed inset-0 z-[1000] hidden flex items-end md:items-center justify-center bg-slate-900/90">
-        <div class="modal-container relative bg-white overflow-hidden flex flex-col md:flex-row shadow-2xl animate-slide-up md:animate-none">
-            <button onclick="closeModal()" class="absolute top-4 right-5 md:top-6 md:right-8 z-[1001] text-slate-400 hover:text-blue-600 orbitron text-3xl md:4xl font-light">×</button>
-            
+        <div class="modal-container relative">
+            <button onclick="closeModal()" class="absolute top-4 right-5 z-[1001] text-slate-400 hover:text-blue-600 orbitron text-3xl font-light">×</button>
             <div class="w-full md:w-2/5 bg-slate-100 p-4 md:p-6 flex flex-col shrink-0">
-                <div class="flex-1 flex items-center justify-center overflow-hidden rounded-xl md:rounded-2xl bg-white shadow-inner mb-3 md:mb-4">
+                <div class="flex-1 overflow-hidden rounded-xl bg-white shadow-inner mb-3">
                     <img id="modalMainImg" src="" class="w-full h-full object-cover">
                 </div>
-                <div id="thumbNav" class="flex gap-2 md:gap-3 overflow-x-auto py-1 custom-scroll"></div>
+                <div id="thumbNav" class="flex gap-2 overflow-x-auto py-1 custom-scroll"></div>
             </div>
-
             <div class="w-full md:w-3/5 p-6 md:p-12 overflow-y-auto custom-scroll bg-white">
-                <div class="mb-6 md:mb-8">
-                    <div class="flex items-center gap-3 mb-2 md:mb-3">
-                        <span id="modalRank" class="rank-badge bg-blue-600 text-white text-[10px] px-2 py-0.5"></span>
-                        <span id="modalFaction" class="text-[10px] font-bold text-blue-500 orbitron tracking-widest"></span>
-                    </div>
-                    <div class="flex items-baseline gap-3 mb-4">
-                        <h2 id="modalName" class="text-2xl md:text-4xl font-black text-slate-900"></h2>
-                        <span id="modalAge" class="text-sm md:text-lg font-bold text-slate-400 orbitron"></span>
-                    </div>
-                    <p id="modalQuote" class="text-sm md:text-lg text-slate-600 italic font-medium border-l-4 border-blue-500 pl-4 md:pl-6"></p>
+                <div class="mb-6">
+                    <span id="modalRank" class="orbitron text-xs font-bold bg-blue-600 text-white px-2 py-1 rounded"></span>
+                    <h2 id="modalName" class="text-2xl md:text-4xl font-black text-slate-900 mt-3"></h2>
+                    <p id="modalQuote" class="text-sm md:text-lg text-slate-600 italic border-l-4 border-blue-500 pl-4 mt-4"></p>
                 </div>
-
-                <div class="grid grid-cols-3 gap-2 md:gap-6 mb-6 p-4 md:p-6 bg-slate-50 rounded-xl md:rounded-2xl text-center">
-                    <div><p class="text-[8px] md:text-[10px] text-slate-400 orbitron font-bold mb-1">HEIGHT</p><p id="modalHeight" class="text-xs md:text-base font-bold text-slate-800"></p></div>
-                    <div class="border-x border-slate-200"><p class="text-[8px] md:text-[10px] text-slate-400 orbitron font-bold mb-1">WEIGHT</p><p id="modalWeight" class="text-xs md:text-base font-bold text-slate-800"></p></div>
-                    <div><p class="text-[8px] md:text-[10px] text-slate-400 orbitron font-bold mb-1">WEAPON</p><p id="modalWeapon" class="text-xs md:text-base font-bold text-blue-600"></p></div>
+                <div class="grid grid-cols-3 gap-2 bg-slate-50 p-4 rounded-xl text-center mb-6">
+                    <div><p class="text-[8px] text-slate-400 orbitron">HEIGHT</p><p id="modalHeight" class="text-xs font-bold"></p></div>
+                    <div class="border-x"><p class="text-[8px] text-slate-400 orbitron">WEIGHT</p><p id="modalWeight" class="text-xs font-bold"></p></div>
+                    <div><p class="text-[8px] text-slate-400 orbitron">WEAPON</p><p id="modalWeapon" class="text-xs font-bold text-blue-600"></p></div>
                 </div>
-
-                <div class="space-y-6 pb-6">
-                    <div>
-                        <h4 class="orbitron text-[10px] font-black text-slate-900 mb-2 uppercase flex items-center gap-2"><span class="w-2 h-2 bg-blue-500 rounded-full"></span> Record</h4>
-                        <p id="modalHistory" class="text-slate-500 text-xs md:text-sm leading-6 md:leading-7"></p>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div class="bg-blue-50/50 p-3 md:p-4 rounded-xl border border-blue-100">
-                            <span class="text-[9px] orbitron font-bold text-blue-500 block mb-1 uppercase">Likes</span>
-                            <p id="modalLikes" class="text-[11px] md:text-xs font-semibold text-blue-900"></p>
-                        </div>
-                        <div class="bg-slate-50 p-3 md:p-4 rounded-xl border border-slate-100">
-                            <span class="text-[9px] orbitron font-bold text-slate-400 block mb-1 uppercase">Dislikes</span>
-                            <p id="modalDislikes" class="text-[11px] md:text-xs font-semibold text-slate-700"></p>
-                        </div>
-                    </div>
-                    <div id="modalHashtags" class="flex flex-wrap gap-2 pt-2"></div>
+                <div class="space-y-4">
+                    <p id="modalHistory" class="text-slate-500 text-xs md:text-sm leading-relaxed"></p>
+                    <div id="modalHashtags" class="flex flex-wrap gap-2"></div>
                 </div>
             </div>
         </div>
@@ -359,7 +274,7 @@ const factionData = {
             const grid = document.getElementById('characterGrid');
             const filtered = characters.filter(char => Array.isArray(info.keyword) ? info.keyword.includes(char.faction) : char.faction.includes(info.keyword));
             
-            grid.innerHTML = filtered.map(char => {
+            grid.innerHTML = filtered.length ? filtered.map(char => {
                 const globalIdx = characters.findIndex(c => c.idCode === char.idCode);
                 const isSRank = char.rank.includes('S');
                 return `
@@ -369,39 +284,36 @@ const factionData = {
                         <div class="card-info p-3">
                             <p class="text-[8px] orbitron font-black text-slate-400 uppercase mb-0.5">${char.faction}</p>
                             <h3 class="text-xs md:text-sm font-bold text-slate-900 leading-none">${char.name}</h3>
-                            <p class="text-[9px] md:text-[10px] text-slate-500 mt-1 truncate font-medium">${char.job}</p>
                         </div>
                     </div>`;
-            }).join('');
+            }).join('') : `<p class="col-span-full text-center py-20 text-slate-400 text-sm">등록된 헌터 데이터가 없습니다.</p>`;
         }
 
         function openModal(index) {
             const char = characters[index];
+            if(!char) return;
             document.getElementById('modalMainImg').src = char.images[0];
             document.getElementById('modalRank').innerText = char.rank;
-            document.getElementById('modalFaction').innerText = char.faction;
             document.getElementById('modalName').innerText = char.name;
-            document.getElementById('modalAge').innerText = char.age + " AGE";
             document.getElementById('modalQuote').innerText = `"${char.quote}"`;
             document.getElementById('modalWeapon').innerText = char.weapon;
             document.getElementById('modalHeight').innerText = char.height;
             document.getElementById('modalWeight').innerText = char.weight;
             document.getElementById('modalHistory').innerText = char.history;
-            document.getElementById('modalLikes').innerText = char.likes;
-            document.getElementById('modalDislikes').innerText = char.dislikes;
-            document.getElementById('modalHashtags').innerHTML = char.hashtags.map(tag => `<span class="px-2 md:px-3 py-1 bg-slate-100 text-slate-500 text-[9px] md:text-[10px] rounded-full font-bold orbitron uppercase">${tag}</span>`).join('');
-            document.getElementById('thumbNav').innerHTML = char.images.map((img, i) => `<img src="${img}" onclick="changeModalImage(this, '${img}')" class="w-10 h-14 md:w-14 md:h-20 object-cover rounded-lg cursor-pointer hover:ring-2 ring-blue-500 shrink-0 bg-white transition-all ${i===0 ? 'ring-2 ring-blue-600' : 'opacity-60'}">`).join('');
+            document.getElementById('modalHashtags').innerHTML = char.hashtags.map(tag => `<span class="px-2 py-1 bg-slate-100 text-slate-500 text-[9px] rounded-full font-bold">#${tag}</span>`).join('');
             document.getElementById('charModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
 
-        function changeModalImage(el, imgSrc) {
-            document.getElementById('modalMainImg').src = imgSrc;
-            document.querySelectorAll('#thumbNav img').forEach(t => { t.classList.remove('ring-2', 'ring-blue-600'); t.classList.add('opacity-60'); });
-            el.classList.add('ring-2', 'ring-blue-600'); el.classList.remove('opacity-60');
+        function closeModal() { document.getElementById('charModal').classList.add('hidden'); document.body.style.overflow = 'auto'; }
+        
+        function startArchive() {
+            document.getElementById('prologue-screen').style.display = 'none';
+            document.getElementById('main-header').style.display = 'block';
+            document.getElementById('main-content').style.display = 'block';
+            // window.open('...', '_blank'); // 필요 시 주석 해제
         }
 
-        function closeModal() { document.getElementById('charModal').classList.add('hidden'); document.body.style.overflow = 'auto'; }
         document.addEventListener('keydown', (e) => { if (e.key === "Escape") closeModal(); });
     </script>
 </body>
