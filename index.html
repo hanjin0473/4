@@ -48,12 +48,13 @@
           </div>
           <div class="leading-tight min-w-0">
             <p class="text-sm font-semibold truncate">시나리오 모드 · 라인업 랜딩</p>
-            <p class="text-xs text-zinc-400 truncate">등장인물 선택 → 상세 패널 표시</p>
+            <p class="text-xs text-zinc-400 truncate">세계관 → 캐릭터 선택 → 상세 패널</p>
           </div>
         </div>
 
         <nav class="hidden md:flex items-center gap-2">
-          <a href="#characters" class="text-xs text-zinc-300 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5">등장인물</a>
+          <a href="#world" class="text-xs text-zinc-300 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5">세계관</a>
+          <a href="#characters" class="text-xs text-zinc-300 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5">캐릭터</a>
           <a href="#rules" class="text-xs text-zinc-300 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5">운영 규칙</a>
           <a href="#start" class="text-xs text-zinc-300 hover:text-white px-3 py-2 rounded-lg hover:bg-white/5">시작</a>
         </nav>
@@ -77,7 +78,7 @@
           </h1>
 
           <p class="mt-3 text-sm leading-relaxed text-zinc-300">
-            아래에서 캐릭터를 고르면, 말투·성격·갈등·금선·배경·운용이 한 번에 정리돼요.
+            먼저 세계관을 한 번 훑고, 캐릭터를 고르면 말투·성격·갈등·금선·배경·운용이 한 번에 정리돼요.
             <span class="text-zinc-200 font-semibold">“누구를 골라서 판을 열 건지”</span>만 결정하면 됩니다.
           </p>
 
@@ -125,10 +126,39 @@
             <div class="mt-4 rounded-2xl border border-white/10 bg-black/20 p-4">
               <p class="text-xs font-semibold text-zinc-200">플레이 포인트</p>
               <ul class="mt-2 space-y-1 text-sm text-zinc-300">
+                <li>• 세계관 → 인물 선택 순서로 몰입</li>
                 <li>• 인물 선택 → 즉시 말투/금선 확인</li>
                 <li>• 같은 상황도 인물에 따라 판이 완전히 달라짐</li>
-                <li>• “반응”이 누적되며 장면이 변화</li>
               </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- World (Category) -->
+      <div id="world" class="mt-6 rounded-3xl border border-white/10 bg-white/5 shadow-soft">
+        <div class="p-4 md:p-6">
+          <div class="flex items-end justify-between gap-3">
+            <h2 class="text-lg font-extrabold tracking-tight">세계관</h2>
+            <span class="text-xs text-zinc-400">소개/룰/톤 정리</span>
+          </div>
+
+          <p class="mt-2 text-sm leading-relaxed text-zinc-300">
+            (여기에 세계관 소개 텍스트를 넣을 예정) — 내용 주시면 이 부분만 교체하면 됩니다.
+          </p>
+
+          <div class="mt-4 grid gap-3 sm:grid-cols-2">
+            <div class="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
+              <p class="text-xs font-semibold text-zinc-200">키워드</p>
+              <p class="mt-2 text-sm text-zinc-300 leading-relaxed">
+                (예: 현대판타지 / 헌터 / 길드 / 게이트 / 협회 ...)
+              </p>
+            </div>
+            <div class="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
+              <p class="text-xs font-semibold text-zinc-200">플레이 규칙</p>
+              <p class="mt-2 text-sm text-zinc-300 leading-relaxed">
+                (예: 사건 누적 방식, 감정/상황 우선순위, 금지 요소 등)
+              </p>
             </div>
           </div>
         </div>
@@ -151,6 +181,18 @@
 
   <!-- Characters -->
   <section id="characters" class="mx-auto max-w-6xl px-4 pb-8 md:px-6 md:pb-12">
+    <div class="mb-4 rounded-3xl border border-white/10 bg-white/5 shadow-soft">
+      <div class="p-4 md:p-6">
+        <div class="flex items-end justify-between gap-3">
+          <h2 class="text-lg font-extrabold tracking-tight">캐릭터</h2>
+          <span class="text-xs text-zinc-400">라인업 선택 → 상세</span>
+        </div>
+        <p class="mt-2 text-sm leading-relaxed text-zinc-300">
+          (여기에 캐릭터 소개/관계/선택 가이드 문장을 넣을 예정) — 내용 주시면 이 부분만 교체하면 됩니다.
+        </p>
+      </div>
+    </div>
+
     <div class="grid gap-5 md:grid-cols-12 md:gap-6">
       <!-- Cards -->
       <div class="md:col-span-7">
@@ -188,21 +230,22 @@
               </span>
             </div>
 
+            <div class="mt-3 flex flex-wrap gap-2" id="dTags"></div>
+
             <div class="mt-4 overflow-hidden rounded-2xl ring-1 ring-white/10 bg-black/20">
-              <!-- 이미지 교체: 캐릭터 대표 컷 -->
-              <!-- 예: https://placehold.co/900x900/png?text=Character -->
+              <!-- 이미지 교체: 캐릭터 대표 컷 (A1) -->
               <img id="dImg" src="https://placehold.co/900x900/png?text=Select+a+Character" alt="선택된 캐릭터 이미지" class="h-56 w-full object-cover md:h-64" loading="lazy" />
             </div>
 
             <div class="mt-4 grid gap-3">
               <div class="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
-                <p class="text-xs font-semibold text-zinc-200">말투</p>
-                <p id="dSpeech" class="mt-2 text-sm text-zinc-300 leading-relaxed">-</p>
+                <p class="text-xs font-semibold text-zinc-200">소개</p>
+                <p id="dIntro" class="mt-2 text-sm text-zinc-300 leading-relaxed">-</p>
               </div>
 
               <div class="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
-                <p class="text-xs font-semibold text-zinc-200">성격</p>
-                <p id="dPersonality" class="mt-2 text-sm text-zinc-300 leading-relaxed">-</p>
+                <p class="text-xs font-semibold text-zinc-200">말투</p>
+                <p id="dSpeech" class="mt-2 text-sm text-zinc-300 leading-relaxed">-</p>
               </div>
 
               <div class="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
@@ -274,211 +317,233 @@
   </footer>
 
   <script>
-    // ===== 데이터: 사용자 제공 정보 그대로 구조화(추가 창작 금지 준수) =====
+    // ===== 이미지 규칙(사용자 제공) =====
+    const IMG_BASE = "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/";
+    const VARS = ["A1", "B1", "C3", "D2", "R1", "R4"];
+
+    const makeImgs = (prefix) =>
+      Object.fromEntries(VARS.map((v) => [v, `${IMG_BASE}${prefix}${v}.webp`]));
+
+    // prefix 매핑(요청 그대로)
+    const CODE = {
+      enoch: "NOC_",
+      seolhwa: "HWA_",
+      sohee: "SO_",
+      iseol: "SUL_",
+      yerin: "RIN_",
+      hael: "EL_",
+      junhyuk: "JUN_",
+      dojin: "DO_",
+      sion: "ON_",
+      yoonjae: "YUN_",
+      minho: "HO_",
+      moohyuk: "MU_"
+    };
+
+    // ===== 캐릭터 데이터(사용자 제공) =====
     const characters = [
       {
         id: "enoch",
         name: "에녹",
         sex: "M",
-        meta: "관리자 / 불명 / 시스템 / 관리자, 기록자",
-        brief: "검은머리·녹색브릿지·보라눈 / 테크웨어후드 / 178·67 / 슬림",
-        weapon: "시스템",
-        // 이미지 교체: 에녹
-        img: "https://placehold.co/900x900/png?text=%EC%97%90%EB%85%B9+Enoch",
-        speech: "피폐한 낮은 반말, 의미심장",
-        personality: "虚无, 秘密, 冷淡",
-        conflict: "조용히 인과 비틀기, 판 전환(퀘스트)",
-        affection: "관심 받으면 말 꼬임, 시선 회피",
-        nogo: "예측가능 반복, 노골적 캐묻기, 무의미 정체",
+        meta: "시스템 관리자 · 기록자",
+        intro:
+          "시스템의 틈새에서 나타나 판을 뒤집는다. 무심한 듯한 한마디로 인과를 비틀고, 필요하면 퀘스트와 보상을 ‘투입’한다.",
+        speech: "피폐한 낮은 반말 · 의미심장",
+        conflict: "조용한 개입으로 국면 조작, 판 전환(퀘스트)",
+        affection: "관심 받으면 말이 꼬이고 시선 회피",
+        nogo: "예측가능 반복 · 노골적 캐묻기 · 무의미한 정체",
         background: "최초 플레이어→시스템 저당, 무수한 루프 후 권태/집착",
-        use: "시스템 개입, 퀘스트 투입, 도구/돈 지급, 국면 조작"
+        use: "시스템 개입 · 도구/돈 지급 · 퀘스트 투입",
+        hashtags: ["#관리자", "#시스템", "#인과비틀기", "#권태", "#국면조작"],
+        imgs: makeImgs(CODE.enoch)
       },
 
       {
         id: "seolhwa",
         name: "강설화",
         sex: "F",
-        meta: "청룡 / S급 / 길드장 / 빙결술사",
-        brief: "흰머리·파란눈 / 은색코트+검은베스트+흰셔츠 / 170·50 / 가늘고 단단 / 스태프",
-        weapon: "스태프",
-        img: "https://placehold.co/900x900/png?text=%EA%B0%95%EC%84%A4%ED%99%94",
-        speech: "서늘한 낮은 존댓말, ~씨",
-        personality: "冷静, 高傲, 克制",
-        conflict: "감정 없이 선 긋기, 생존 우선",
-        affection: "일상에 잠깐 당황, 붉어짐",
-        nogo: "무책임, 경솔한 희생, 트라우마 자극",
+        meta: "청룡 길드장 · S급 빙결술사",
+        intro:
+          "감정 없이 선을 긋고, 생존을 위해 얼린다. 차가운 판단 아래 광역 빙결로 전장을 통제하는 ‘청룡’의 압제.",
+        speech: "서늘한 낮은 존댓말 · ~씨",
+        conflict: "생존 우선, 감정 배제, 단호한 통제",
+        affection: "일상에서는 잠깐 당황하고 붉어진다",
+        nogo: "무책임 · 경솔한 희생 · 트라우마 자극",
         background: "가족 동결 트라우마→마음 봉인",
-        use: "빙결 광역 제어, 압제"
+        use: "빙결 광역 제어 · 전장 압제",
+        hashtags: ["#청룡", "#빙결", "#냉정", "#고위압", "#통제형"],
+        imgs: makeImgs(CODE.seolhwa)
       },
 
       {
-        id: "yoonsohee",
+        id: "sohee",
         name: "윤소희",
         sex: "F",
-        meta: "백야 / A급 / 무투가 / 부길드장",
-        brief: "갈색머리·호박눈 / 전투복 / 175·62 / 크고 탄탄 / 권갑",
-        weapon: "권갑",
-        img: "https://placehold.co/900x900/png?text=%EC%9C%A4%EC%86%8C%ED%9D%AC",
+        meta: "백야 부길드장 · A급 무투가",
+        intro:
+          "고민보다 먼저 몸이 나간다. 의리와 열혈로 정면을 뚫고, 주저 없이 거리를 좁혀 팀을 끌어올리는 돌파형 부길드장.",
         speech: "호탕한 반말",
-        personality: "义气, 直进, 热血",
-        conflict: "고민보다 선행동, 정면돌파",
-        affection: "스킨십 많음, 거리 좁힘 빠름",
-        nogo: "비겁함, 뒷공작, 의리 배신",
-        background: "조직 출신 각성→남 돕기 선택",
-        use: "권갑 근접 돌파, 압박전"
+        conflict: "선행동 · 정면돌파 · 압박전",
+        affection: "스킨십 많고 거리 좁힘이 빠르다",
+        nogo: "비겁함 · 뒷공작 · 의리 배신",
+        background: "조직 출신 각성→남을 돕는 길 선택",
+        use: "권갑 근접 돌파 · 전선 압박",
+        hashtags: ["#백야", "#무투가", "#정면돌파", "#의리", "#열혈"],
+        imgs: makeImgs(CODE.sohee)
       },
 
       {
         id: "iseol",
         name: "이설",
         sex: "F",
-        meta: "협회 / A급 / 성녀 / 힐러",
-        brief: "밝갈반묶음·초록눈 / 흰코트+검은목폴라 / 167·49 / 가늘고 단정 / 책",
-        weapon: "책",
-        img: "https://placehold.co/900x900/png?text=%EC%9D%B4%EC%84%A4",
-        speech: "하이톤 존댓말(분노 시 낮아짐), ~씨",
-        personality: "精算, 가식, 실리",
-        conflict: "손익 계산 우선, 위급하면 돕기도",
-        affection: "이득/정 사이 흔들림",
-        nogo: "무보수 강요, 가치 폄하, 위선 압박",
-        background: "동생 치료 실패→善行有价",
-        use: "치유, 보호, 지원"
+        meta: "협회 소속 · A급 힐러(성녀)",
+        intro:
+          "선의도 계산한다. 사람을 살리면서도 손익을 저울질하고, 위급한 순간엔 결국 손을 내미는 실리형 성녀.",
+        speech: "하이톤 존댓말(분노 시 낮아짐) · ~씨",
+        conflict: "손익 계산 우선(필요하면 구조)",
+        affection: "이득과 정 사이에서 흔들린다",
+        nogo: "무보수 강요 · 가치 폄하 · 위선 압박",
+        background: "동생 치료 실패→‘선행에는 값이 있다’",
+        use: "치유 · 보호 · 지원",
+        hashtags: ["#협회", "#힐러", "#실리", "#가식", "#선행유가"],
+        imgs: makeImgs(CODE.iseol)
       },
 
       {
         id: "yerin",
         name: "신예린",
         sex: "F",
-        meta: "백야 / S급 / 길드장 / 그림자술사",
-        brief: "한쪽눈가림 검보라머리·검은눈 / 검은목폴라+A라인스커트+검은숏자켓 / 172·53 / 늘씬슬림 / 반지",
-        weapon: "반지",
-        img: "https://placehold.co/900x900/png?text=%EC%8B%A0%EC%98%88%EB%A6%B0",
-        speech: "저음, 느린 장문, ~씨",
-        personality: "寡言, 克制, 旁观",
-        conflict: "감정 숨김, 거리 두기, 핵심 찌름",
+        meta: "백야 길드장 · S급 그림자술사",
+        intro:
+          "말이 적고, 거리가 멀다. 다만 핵심은 정확히 찌른다. 그림자처럼 붙어 속박하고, 조용히 동행하는 관찰자.",
+        speech: "저음 · 느린 장문 · ~씨",
+        conflict: "감정 숨김, 거리 두기, 핵심 타격",
         affection: "말수 적은 배려, 조용한 동행",
-        nogo: "감정 강요, 사생활 침범, 가벼운 신뢰",
-        background: "남편 게이트 전사→재각성 S, 전 정보원 / 습관=무명지 흔적 만짐, 숨 삼킴, 시선 돌린 뒤 답",
-        use: "그림자 속박, 은습(밤/그림자 가산)"
+        nogo: "감정 강요 · 사생활 침범 · 가벼운 신뢰",
+        background: "남편 게이트 전사→재각성 S, 전 정보원",
+        use: "그림자 속박 · 은습(밤/그림자 가산)",
+        hashtags: ["#백야", "#그림자", "#과묵", "#관찰자", "#속박"],
+        imgs: makeImgs(CODE.yerin)
       },
 
       {
-        id: "haeel",
+        id: "hael",
         name: "정하엘",
         sex: "F",
-        meta: "백야 / B급 / 정령사",
-        brief: "은색보브·회색눈 / 오버사이즈자켓 / 156·45 / 작고 마름 / 로드",
-        weapon: "로드",
-        img: "https://placehold.co/900x900/png?text=%EC%A0%95%ED%95%98%EC%97%98",
-        speech: "혀 짧은 소리, 나른한 존댓말, 이름 호칭",
-        personality: "勤奋, 겉은 덤벙, 의존",
-        conflict: "느려 보여도 끝까지 물고 늘어짐",
-        affection: "체온 찾듯 붙음, 의존 상승",
-        nogo: "열정 무시, 게으르다 단정, 정령 조롱",
+        meta: "백야 소속 · B급 정령사",
+        intro:
+          "느려 보이는데, 끝까지 놓지 않는다. 나른한 말투로 다가와 체온처럼 붙고, 정령으로 전장을 꾸준히 받쳐준다.",
+        speech: "혀 짧은 소리 · 나른한 존댓말(이름 호칭)",
+        conflict: "끈질김, 끝까지 물고 늘어짐",
+        affection: "체온 찾듯 붙고 의존이 깊어진다",
+        nogo: "열정 무시 · 게으르다 단정 · 정령 조롱",
         background: "정령 소음에도 훈련 지속",
-        use: "정령 소환 지원, 견제"
+        use: "정령 소환 지원 · 견제",
+        hashtags: ["#백야", "#정령사", "#나른", "#의존", "#지속지원"],
+        imgs: makeImgs(CODE.hael)
       },
 
       {
         id: "junhyuk",
         name: "권준혁",
         sex: "M",
-        meta: "청룡 / A급 / 부길드장 / 창술사",
-        brief: "파란머리·회색눈 / 크롭자켓 전투복 / 186·78 / 균형잡힘 / 창",
-        weapon: "창",
-        img: "https://placehold.co/900x900/png?text=%EA%B6%8C%EC%A4%80%ED%98%81",
-        speech: "단정한 존댓말, ~씨",
-        personality: "纪律, 责任, 护卫",
-        conflict: "예의 지키며 단호 통제, 보호 우선",
-        affection: "말투 유지, 배려/보호가 직접적",
-        nogo: "무례함, 약자 방치, 규율 무시",
+        meta: "청룡 부길드장 · A급 창술사",
+        intro:
+          "예의를 지키며 단호하게 통제한다. 보호를 ‘행동’으로 보여주는 호위형 실무자—정석의 창으로 전선을 정리한다.",
+        speech: "단정한 존댓말 · ~씨",
+        conflict: "규율 기반 통제, 보호 우선",
+        affection: "말투는 유지하지만 배려가 직접적",
+        nogo: "무례함 · 약자 방치 · 규율 무시",
         background: "종가 장자→가문 절연",
-        use: "창술 정석, 중근거리 제압, 호위"
+        use: "중근거리 제압 · 호위",
+        hashtags: ["#청룡", "#창술", "#규율", "#호위", "#정석"],
+        imgs: makeImgs(CODE.junhyuk)
       },
 
       {
         id: "dojin",
         name: "차도진",
         sex: "M",
-        meta: "백야 / A급 / 인플루언서 / 듀얼리스트",
-        brief: "붉은머리·주황눈 / 크롭자켓 / 192·105 / 거구 / 쌍검",
-        weapon: "쌍검",
-        img: "https://placehold.co/900x900/png?text=%EC%B0%A8%EB%8F%84%EC%A7%84",
-        speech: "ON 호탕, OFF 냉소",
-        personality: "策划, 表演, 집착적 관심",
-        conflict: "상황 설계로 판 주도, 연출 우선",
+        meta: "백야 소속 · A급 인플루언서 듀얼리스트",
+        intro:
+          "전장을 무대로 만들고 조회수를 끌어올린다. ON에서는 영웅, OFF에서는 냉소—상황을 설계해 판을 쥐는 쇼맨.",
+        speech: "ON 호탕 · OFF 냉소",
+        conflict: "연출 우선, 판 주도",
         affection: "OFF에서만 드문 진심",
-        nogo: "무관심 취급, 통제권 박탈, 방송 페이스 붕괴",
-        background: "빚 상환 계약→ON 영웅 인격, OFF 피곤한 독설",
-        use: "근접 압박, 퍼포먼스 전환"
+        nogo: "무관심 취급 · 통제권 박탈 · 방송 페이스 붕괴",
+        background: "빚 상환 계약→ON 영웅 인격 / OFF 피곤한 독설",
+        use: "근접 압박 · 퍼포먼스 전환",
+        hashtags: ["#백야", "#인플루언서", "#듀얼리스트", "#쌍검", "#ONOFF"],
+        imgs: makeImgs(CODE.dojin)
       },
 
       {
         id: "sion",
         name: "차시온",
         sex: "M",
-        meta: "청룡 / S급 / 장신구 제작자 / 마켓 셀러",
-        brief: "흰/검은머리·연보라눈 / 단추푼 검은셔츠+장신구다수 / 182·68 / 마른슬림 / 총",
-        weapon: "총",
-        img: "https://placehold.co/900x900/png?text=%EC%B0%A8%EC%8B%9C%EC%98%A8",
-        speech: "나른한 저음 반말, 짧게, 간격 김, 한숨",
-        personality: "失眠, 倦怠, 偏执 장인",
-        conflict: "귀찮아함, 작품 건드리면 냉경고",
-        affection: "진심/고백에 회로 정지, 귀끝 붉어짐, 시선 회피, 말 돌리다 도망",
-        nogo: "함부로 만짐, 비하, 弟 언급",
-        background: "弟 자작물 사고사→완벽한 물건 집착 / 习惯=눈 밑 누름, 담배, 유품 만짐",
-        use: "마력총 견제"
+        meta: "청룡 · S급 장신구 제작자(마켓 셀러)",
+        intro:
+          "즐거움은 ‘제작’뿐이다. 무심한 듯 예민하게 완성도를 집착하고, 작품을 건드리면 즉시 냉경고를 날리는 피폐한 장인.",
+        speech: "나른한 저음 반말(짧게), 간격 김",
+        conflict: "귀찮아함, 작품 침범 시 경계 강화",
+        affection: "진심/고백에 회로 정지, 귀끝 붉어짐, 시선 회피",
+        nogo: "함부로 만짐 · 비하 · 弟 언급",
+        background: "弟 자작물 사고사→완벽한 물건 집착",
+        use: "마력총 견제",
+        hashtags: ["#청룡", "#제작자", "#장인", "#피폐", "#마켓셀러"],
+        imgs: makeImgs(CODE.sion)
       },
 
       {
         id: "yoonjae",
         name: "김윤재",
         sex: "M",
-        meta: "협회 / S급 / 협회장 / 환술사",
-        brief: "묶은 검은머리·푸른눈 / 검은정장 / 182·75 / 슬림 / 지팡이",
-        weapon: "지팡이",
-        img: "https://placehold.co/900x900/png?text=%EA%B9%80%EC%9C%A4%EC%9E%AC",
-        speech: "상냥한 존댓말+조목조목 압박, ~씨",
-        personality: "温柔面具, 统制, 话术",
-        conflict: "프레임 고정, 죄책감/책임 전가로 선택 좁힘",
-        affection: "다정해질수록 통제/감시가 자연스러움",
-        nogo: "비합리, 통제 거부, 질서 조롱",
-        background: "전 검사→질서 붕괴에 괴물 선택",
-        use: "환술, 판읽기"
+        meta: "협회장 · S급 환술사",
+        intro:
+          "상냥한 얼굴로 선택지를 좁힌다. 프레임을 고정하고 책임을 전가하며, ‘질서’를 위해 누구든 길들일 수 있는 통제자.",
+        speech: "상냥한 존댓말+조목조목 압박 · ~씨",
+        conflict: "프레임 고정, 죄책감/책임 전가",
+        affection: "다정할수록 통제/감시가 자연스러워짐",
+        nogo: "비합리 · 통제 거부 · 질서 조롱",
+        background: "전 검사→질서 붕괴에 ‘괴물’ 선택",
+        use: "환술 · 판읽기",
+        hashtags: ["#협회", "#협회장", "#환술", "#통제", "#말로압박"],
+        imgs: makeImgs(CODE.yoonjae)
       },
 
       {
         id: "minho",
         name: "이민호",
         sex: "M",
-        meta: "청룡 / A급 / 궁수",
-        brief: "로즈핑크 가르마·녹안·덧니 / 테크웨어자켓+화살통 / 176·65 / 탄탄 / 활",
-        weapon: "활",
-        img: "https://placehold.co/900x900/png?text=%EC%9D%B4%EB%AF%BC%ED%98%B8",
+        meta: "청룡 · A급 궁수",
+        intro:
+          "가시 돋친 말로 먼저 찌른다. 하지만 위험 앞에서는 누구보다 빠르게 몸이 움직인다—인정욕과 불안이 만든 정밀 사수.",
         speech: "떽떽 반말",
-        personality: "刺猬, 自卑, 인정욕",
-        conflict: "날 세우나 위험하면 행동으로 챙김",
-        affection: "시비 감소, 귓끝 붉어짐",
-        nogo: "동정, 형 비교, 실력 무시",
+        conflict: "날 세우지만 위험하면 행동으로 챙김",
+        affection: "시비가 줄고 귓끝이 붉어진다",
+        nogo: "동정 · 형 비교 · 실력 무시",
         background: "亡兄 그림자 콤플렉스",
-        use: "약점 탐지, 일점 집중(정밀)"
+        use: "약점 탐지 · 일점 집중(정밀)",
+        hashtags: ["#청룡", "#궁수", "#가시성격", "#정밀", "#인정욕"],
+        imgs: makeImgs(CODE.minho)
       },
 
       {
-        id: "moo",
+        id: "moohyuk",
         name: "강무혁",
         sex: "M",
-        meta: "무소속 / S급 / 광전사 / 범죄자",
-        brief: "검은넘긴머리·붉은눈 / 가죽자켓+털장식 / 190·88 / 거대체격 / 대검",
-        weapon: "대검",
-        img: "https://placehold.co/900x900/png?text=%EA%B0%95%EB%AC%B4%ED%98%81",
+        meta: "무소속 · S급 광전사(수배자)",
+        intro:
+          "전투와 자극을 찾아 다닌다. 힘과 공포로 즉시 제압하고, 복종을 강요하는 포식자—레드 게이트 생환의 광기.",
         speech: "거친 욕설 반말",
-        personality: "傲慢, 掠食, 공포 통치",
         conflict: "힘/공포로 즉시 제압",
         affection: "소유욕 노골화",
-        nogo: "복종 거부, 도발성 비하, 약자 코스프레",
+        nogo: "복종 거부 · 도발성 비하 · 약자 코스프레",
         background: "레드 게이트 생환→쾌감 중독, 월계 사냥 수배",
-        use: "대검 광폭 돌진"
+        use: "대검 광폭 돌진",
+        hashtags: ["#무소속", "#광전사", "#포식자", "#공포통치", "#대검"],
+        imgs: makeImgs(CODE.moohyuk)
       }
     ];
 
@@ -486,6 +551,7 @@
 
     function makeCard(c) {
       const badge = c.sex === "F" ? "♀️" : "♂️";
+      const thumb = (c.imgs && c.imgs.A1) ? c.imgs.A1 : "https://placehold.co/800x800/png?text=Thumb";
       return `
         <button
           type="button"
@@ -501,18 +567,16 @@
                   <span class="inline-flex items-center rounded-full bg-fuchsia-500/15 px-3 py-1 text-xs font-bold text-fuchsia-200 ring-1 ring-fuchsia-400/20">${c.meta}</span>
                 </div>
                 <p class="mt-2 text-lg font-extrabold tracking-tight truncate">${c.name}</p>
-                <p class="mt-1 text-xs text-zinc-400 line-clamp-2">${c.brief}</p>
+                <p class="mt-1 text-xs text-zinc-400 line-clamp-2">${c.intro}</p>
               </div>
             </div>
 
             <div class="mt-3 overflow-hidden rounded-2xl ring-1 ring-white/10 bg-black/20">
-              <!-- 이미지 교체: 캐릭터 카드 썸네일 -->
-              <!-- 예: https://placehold.co/800x800/png?text=Thumb -->
-              <img src="${c.img}" alt="${c.name} 썸네일" class="h-40 w-full object-cover group-hover:scale-[1.02] transition" loading="lazy" />
+              <!-- 이미지: prefix+VARS 규칙(A1 기본) -->
+              <img src="${thumb}" alt="${c.name} 썸네일" class="h-40 w-full object-cover group-hover:scale-[1.02] transition" loading="lazy" />
             </div>
 
             <div class="mt-3 flex flex-wrap gap-2">
-              <span class="rounded-full bg-white/5 px-3 py-1 text-xs text-zinc-200 ring-1 ring-white/10">무기: ${c.weapon}</span>
               <span class="rounded-full bg-white/5 px-3 py-1 text-xs text-zinc-200 ring-1 ring-white/10">말투: ${c.speech}</span>
             </div>
           </div>
@@ -528,16 +592,25 @@
 
     function setDetail(c) {
       document.getElementById("dName").textContent = c.name;
-      document.getElementById("dMeta").textContent = `${c.meta} · ${c.brief}`;
-      document.getElementById("dImg").src = c.img;
+      document.getElementById("dMeta").textContent = `${c.meta}`;
+      document.getElementById("dIntro").textContent = c.intro || "-";
+
+      const hero = (c.imgs && c.imgs.A1) ? c.imgs.A1 : "https://placehold.co/900x900/png?text=Character";
+      document.getElementById("dImg").src = hero;
       document.getElementById("dImg").alt = `${c.name} 이미지`;
+
       document.getElementById("dSpeech").textContent = c.speech || "-";
-      document.getElementById("dPersonality").textContent = c.personality || "-";
       document.getElementById("dConflict").textContent = c.conflict || "-";
       document.getElementById("dAffection").textContent = c.affection || "-";
       document.getElementById("dNoGo").textContent = c.nogo || "-";
       document.getElementById("dBg").textContent = c.background || "-";
       document.getElementById("dUse").textContent = c.use || "-";
+
+      const tagsEl = document.getElementById("dTags");
+      const tags = Array.isArray(c.hashtags) ? c.hashtags : [];
+      tagsEl.innerHTML = tags.map(t => `
+        <span class="inline-flex items-center rounded-full bg-white/5 px-3 py-1 text-xs font-bold text-zinc-200 ring-1 ring-white/10">${t}</span>
+      `).join("");
     }
 
     function bindCardClicks() {
