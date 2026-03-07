@@ -9,7 +9,6 @@
     <style>
         :root { 
             --sys-blue: #0084ff;
-            --sys-light-blue: #e6f3ff;
             --bg-white: #ffffff;
         }
         body { 
@@ -20,66 +19,82 @@
             background-size: 30px 30px;
         }
         .orbitron { font-family: 'Orbitron', sans-serif; }
-        /* 캐릭터 카드 사이즈 축소 */
-        .sys-card { border: 1px solid #e2e8f0; transition: all 0.3s; background: white; max-width: 240px; margin: 0 auto; width: 100%; }
-        .sys-card:hover { border-color: var(--sys-blue); transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0, 132, 255, 0.1); }
-        .custom-scroll::-webkit-scrollbar { width: 4px; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: var(--sys-blue); border-radius: 10px; }
+        
+        /* 캐릭터 카드: 고정 너비와 격자 유지 */
+        .sys-card { 
+            border: 1px solid #e2e8f0; 
+            transition: all 0.3s; 
+            background: white; 
+            width: 100%;
+            max-width: 180px; /* 카드 크기를 더 컴팩트하게 조절 */
+            margin: 0 auto;
+        }
+        .sys-card:hover { border-color: var(--sys-blue); transform: translateY(-4px); box-shadow: 0 8px 16px rgba(0, 132, 255, 0.1); }
         
         /* 탭 스타일 */
-        .tab-btn { position: relative; padding-bottom: 8px; color: #94a3b8; transition: all 0.3s; }
+        .tab-btn { position: relative; padding-bottom: 8px; color: #94a3b8; transition: all 0.3s; font-size: 0.85rem; }
         .tab-btn.active { color: var(--sys-blue); font-weight: 700; }
         .tab-btn.active::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 2px; background: var(--sys-blue); }
         
-        .content-section { display: none; }
-        .content-section.active { display: block; }
+        .content-section { display: none; opacity: 0; transition: opacity 0.3s ease; }
+        .content-section.active { display: block; opacity: 1; }
+
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: var(--sys-blue); border-radius: 10px; }
     </style>
 </head>
-<body class="p-4 md:p-12">
+<body class="p-4 md:p-10">
 
-    <header class="max-w-7xl mx-auto mb-8 border-b-2 border-slate-900 pb-4">
+    <header class="max-w-7xl mx-auto mb-10 border-b-2 border-slate-900 pb-4">
         <div class="flex justify-between items-end mb-6">
             <div>
                 <h1 class="orbitron text-2xl md:text-3xl font-black tracking-tighter">HUNTER <span class="text-blue-600">DATABASE</span></h1>
-                <p class="text-[9px] text-slate-400 orbitron mt-1">MANAGEMENT SYSTEM v3.5</p>
+                <p class="text-[9px] text-slate-400 orbitron mt-1 tracking-widest">CLASSIFIED INFORMATION SYSTEM</p>
             </div>
-            <span class="orbitron text-[10px] text-blue-500 font-bold animate-pulse">● SYSTEM ONLINE</span>
+            <span class="orbitron text-[10px] text-blue-500 font-bold animate-pulse">● ONLINE</span>
         </div>
         
-        <nav class="flex gap-8 orbitron text-sm tracking-widest">
+        <nav class="flex gap-10 orbitron tracking-widest">
             <button onclick="switchTab('world')" id="tab-world" class="tab-btn active">WORLD VIEW</button>
             <button onclick="switchTab('characters')" id="tab-characters" class="tab-btn">CHARACTERS</button>
         </nav>
     </header>
 
-    <main id="section-world" class="content-section active max-w-4xl mx-auto py-8">
-        <div class="bg-white border border-slate-200 p-6 md:p-10 rounded-xl shadow-sm leading-relaxed">
-            <h2 class="orbitron text-xl font-bold text-blue-600 mb-6 tracking-tighter border-l-4 border-blue-600 pl-4">WORLD SETTING: THE AWAKENED ERA</h2>
-            <div class="space-y-6 text-slate-600">
-                <p>20xx년, 전 세계 도처에 '게이트'라 불리는 차원 균열이 발생했습니다. 게이트 너머에서 쏟아지는 마물들로 인해 인류는 멸망의 위기에 처했으나, 동시에 특수한 능력을 각성한 이들이 나타나기 시작했습니다.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-8">
-                    <div class="p-4 bg-slate-50 rounded-lg border-l-2 border-slate-300">
-                        <strong class="text-slate-900 block mb-1">HUNTER ASSOCIATION</strong>
-                        <p class="text-sm italic text-slate-500">각성자들을 관리하고 게이트 공략을 총괄하는 국가 공인 기관.</p>
+    <main id="section-world" class="content-section active max-w-4xl mx-auto py-4">
+        <article class="bg-white border border-slate-200 p-8 md:p-12 rounded-2xl shadow-sm">
+            <h2 class="orbitron text-2xl font-bold text-slate-900 mb-8 border-b border-slate-100 pb-4 tracking-tighter">PROJECT: ORIGIN WORLD</h2>
+            
+            <div class="space-y-8 text-slate-600 text-sm md:text-base leading-relaxed">
+                <div>
+                    <h3 class="font-bold text-blue-600 mb-2 underline underline-offset-4">1. 게이트의 출현 (The Emergence)</h3>
+                    <p>20xx년, 인류의 상식을 벗어난 차원의 문 '게이트'가 열렸습니다. 그곳에서 쏟아진 마물들은 기존 병기로 살상할 수 없었으나, 동시에 발현된 각성자들의 '마력'만이 유일한 대항 수단이 되었습니다.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
+                    <div class="p-5 bg-slate-50 rounded-xl border border-slate-200">
+                        <strong class="text-slate-900 block mb-2 orbitron text-xs">● HUNTER RATING</strong>
+                        <p class="text-xs text-slate-500">각성 수치와 마력 총량에 따라 RANK S부터 F까지 엄격하게 분류됩니다.</p>
                     </div>
-                    <div class="p-4 bg-blue-50 rounded-lg border-l-2 border-blue-300">
-                        <strong class="text-blue-900 block mb-1">GUILD SYSTEM</strong>
-                        <p class="text-sm italic text-slate-600">대형 게이트 공략을 목적으로 모인 각성자 기업 단체.</p>
+                    <div class="p-5 bg-slate-50 rounded-xl border border-slate-200">
+                        <strong class="text-slate-900 block mb-2 orbitron text-xs">● MANA CORE</strong>
+                        <p class="text-xs text-slate-500">게이트 심장부에서 추출되는 에너지원으로, 현대 문명의 새로운 동력이 됩니다.</p>
                     </div>
                 </div>
-                <p>현재 인류는 게이트 내부에서 얻는 마석과 부산물을 통해 새로운 에너지 혁명을 맞이했으며, 헌터는 현대 사회에서 가장 선망받는 동시에 가장 위험한 직업으로 자리 잡았습니다.</p>
+
+                <div>
+                    <h3 class="font-bold text-blue-600 mb-2 underline underline-offset-4">2. 현재의 정세 (Current Status)</h3>
+                    <p>게이트를 공략하여 이권을 챙기는 '길드'는 국가를 넘어서는 초국적 기업으로 성장했습니다. 특히 한국의 3대 길드인 [청룡], [백야], 그리고 [협회]는 각기 다른 목적을 지닌 채 보이지 않는 권력 싸움을 이어가고 있습니다.</p>
+                </div>
             </div>
-        </div>
+        </article>
     </main>
 
-    <main id="section-characters" class="content-section max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+    <main id="section-characters" class="content-section max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-5 px-2">
         </main>
 
     <div id="charModal" class="fixed inset-0 z-[1000] hidden flex items-center justify-center p-0 md:p-4 bg-slate-900/60 backdrop-blur-md">
         <div class="relative w-full h-full md:h-auto md:max-w-5xl bg-white md:rounded-xl overflow-hidden flex flex-col md:flex-row shadow-2xl">
-            
-            <button onclick="closeModal()" class="absolute top-4 right-6 z-50 text-slate-400 hover:text-blue-600 orbitron text-3xl md:text-2xl">×</button>
-
+            <button onclick="closeModal()" class="absolute top-4 right-6 z-50 text-slate-400 hover:text-blue-600 orbitron text-3xl">×</button>
             <div class="w-full md:w-1/3 bg-slate-100 p-4 md:p-6 border-b md:border-b-0 md:border-r border-slate-200 flex flex-col shrink-0">
                 <div class="relative mb-3 md:mb-4">
                     <img id="modalMainImg" src="" class="w-full aspect-[3/4] md:aspect-[3/4.5] object-cover rounded-lg shadow-md">
@@ -87,9 +102,8 @@
                 </div>
                 <div id="thumbNav" class="flex gap-2 overflow-x-auto pb-2 custom-scroll"></div>
             </div>
-
             <div class="w-full md:w-2/3 p-6 md:p-10 overflow-y-auto custom-scroll">
-                <div class="mb-6 md:mb-8">
+                <div class="mb-6">
                     <div class="flex items-center gap-2 mb-2">
                         <span id="modalRank" class="orbitron text-[10px] font-bold px-2 py-0.5 bg-blue-600 text-white"></span>
                         <span id="modalFaction" class="text-[10px] font-bold text-slate-400 uppercase tracking-widest"></span>
@@ -97,33 +111,18 @@
                     <h2 id="modalName" class="text-2xl md:text-4xl font-bold text-slate-900 mb-3 md:mb-4"></h2>
                     <p id="modalQuote" class="text-sm md:text-lg text-blue-600 italic font-medium leading-relaxed border-l-4 border-blue-100 pl-4"></p>
                 </div>
-
                 <div id="modalHashtags" class="flex flex-wrap gap-1.5 mb-6"></div>
-
                 <div class="grid grid-cols-2 gap-4 mb-6 py-4 border-y border-slate-100">
                     <div><p class="text-[9px] text-slate-400 orbitron mb-1 tracking-tighter">JOB/POSITION</p><p id="modalJob" class="font-bold text-xs"></p></div>
                     <div><p class="text-[9px] text-slate-400 orbitron mb-1 tracking-tighter">WEAPON TYPE</p><p id="modalWeapon" class="font-bold text-xs text-blue-600"></p></div>
                     <div><p class="text-[9px] text-slate-400 orbitron mb-1 tracking-tighter">HEIGHT/WEIGHT</p><p id="modalPhysical" class="font-bold text-xs"></p></div>
                     <div><p class="text-[9px] text-slate-400 orbitron mb-1 tracking-tighter">SKILLS</p><p id="modalSkillSum" class="font-bold text-xs"></p></div>
                 </div>
-
                 <div class="space-y-6">
-                    <div>
-                        <h4 class="orbitron text-[10px] font-bold text-slate-900 mb-3 tracking-widest flex items-center gap-2">
-                            <span class="w-1 h-3 bg-blue-600"></span> PERSONA HISTORY
-                        </h4>
-                        <div id="modalHistory" class="text-slate-500 text-xs md:text-sm leading-relaxed space-y-3"></div>
-                    </div>
-
+                    <div><h4 class="orbitron text-[10px] font-bold text-slate-900 mb-3 tracking-widest flex items-center gap-2"><span class="w-1 h-3 bg-blue-600"></span> PERSONA HISTORY</h4><div id="modalHistory" class="text-slate-500 text-xs md:text-sm leading-relaxed space-y-3 font-light"></div></div>
                     <div class="flex flex-col sm:flex-row gap-3">
-                        <div class="flex-1 bg-blue-50 p-3 rounded-lg">
-                            <span class="text-[9px] orbitron font-bold text-blue-500 block mb-1">LIKES</span>
-                            <p id="modalLikes" class="text-xs font-semibold text-blue-900"></p>
-                        </div>
-                        <div class="flex-1 bg-slate-50 p-3 rounded-lg">
-                            <span class="text-[9px] orbitron font-bold text-slate-400 block mb-1">DISLIKES</span>
-                            <p id="modalDislikes" class="text-xs font-semibold text-slate-700"></p>
-                        </div>
+                        <div class="flex-1 bg-blue-50 p-3 rounded-lg"><span class="text-[9px] orbitron font-bold text-blue-500 block mb-1">LIKES</span><p id="modalLikes" class="text-xs font-semibold text-blue-900"></p></div>
+                        <div class="flex-1 bg-slate-50 p-3 rounded-lg"><span class="text-[9px] orbitron font-bold text-slate-400 block mb-1">DISLIKES</span><p id="modalDislikes" class="text-xs font-semibold text-slate-700"></p></div>
                     </div>
                 </div>
                 <div class="h-10 md:hidden"></div>
@@ -132,7 +131,7 @@
     </div>
 
     <script>
-        // 캐릭터 데이터 (이전과 동일)
+        // 데이터 (에녹, 강설화, 윤소희, 이설, 신예린, 정하엘, 권준혁, 차도진, 차시온, 김윤재, 이민호, 강무혁)
         const characters = [
 {
     name: "에녹",
@@ -436,16 +435,14 @@
 }
             ];
 
-        // 탭 전환 기능
+
         function switchTab(tabId) {
             document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-            
             document.getElementById(`section-${tabId}`).classList.add('active');
             document.getElementById(`tab-${tabId}`).classList.add('active');
         }
 
-        // 캐릭터 카드 렌더링
         const grid = document.getElementById('section-characters');
         function init() {
             characters.forEach((char, index) => {
@@ -453,13 +450,13 @@
                 card.className = "sys-card p-3 cursor-pointer group rounded-lg";
                 card.onclick = () => openModal(index);
                 card.innerHTML = `
-                    <div class="overflow-hidden rounded mb-3">
+                    <div class="overflow-hidden rounded mb-2">
                         <img src="${char.images[0]}" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-500">
                     </div>
                     <div>
                         <span class="orbitron text-[8px] font-bold text-blue-600">${char.rank}</span>
-                        <h3 class="text-base font-bold text-slate-800 leading-tight">${char.name}</h3>
-                        <p class="text-[10px] text-slate-400 mt-1 truncate">${char.hashtags[0]} ${char.hashtags[1] || ''}</p>
+                        <h3 class="text-sm font-bold text-slate-800 leading-tight">${char.name}</h3>
+                        <p class="text-[9px] text-slate-400 mt-0.5 truncate">${char.hashtags.join(' ')}</p>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -480,15 +477,10 @@
             document.getElementById('modalDislikes').innerText = char.dislikes;
             document.getElementById('modalHistory').innerHTML = char.history;
             document.getElementById('modalIdCode').innerText = char.idCode;
-
             const hashContainer = document.getElementById('modalHashtags');
-            hashContainer.innerHTML = char.hashtags.map(h => 
-                `<span class="text-[10px] font-bold text-blue-500 bg-blue-50 px-2 py-0.5 rounded">${h}</span>`
-            ).join('');
-
+            hashContainer.innerHTML = char.hashtags.map(h => `<span class="text-[10px] font-bold text-blue-500 bg-blue-50 px-2 py-0.5 rounded">${h}</span>`).join('');
             const mainImg = document.getElementById('modalMainImg');
             mainImg.src = char.images[0];
-
             const thumbNav = document.getElementById('thumbNav');
             thumbNav.innerHTML = '';
             char.images.forEach((imgSrc, i) => {
@@ -502,7 +494,6 @@
                 };
                 thumbNav.appendChild(thumb);
             });
-
             document.getElementById('charModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
