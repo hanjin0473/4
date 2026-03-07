@@ -17,17 +17,20 @@
         }
         .orbitron { font-family: 'Orbitron', sans-serif; }
         
-        /* Tab Styles */
+        /* Main Tab Styles */
         .tab-btn { position: relative; color: #94a3b8; transition: all 0.3s; padding-bottom: 4px; white-space: nowrap; }
         .tab-btn.active { color: var(--sys-blue); font-weight: 700; }
         .tab-btn.active::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px; background: var(--sys-blue); }
         
+        /* Sub Filter Styles */
+        .filter-btn { border: 1px solid #e2e8f0; background: white; color: #64748b; padding: 6px 16px; border-radius: 99px; font-size: 11px; font-weight: 600; transition: all 0.2s; }
+        .filter-btn.active { background: var(--sys-blue); color: white; border-color: var(--sys-blue); box-shadow: 0 4px 10px rgba(0, 132, 255, 0.2); }
+
         .content-section { display: none; animation: fadeIn 0.4s ease-out; }
         .content-section.active { display: block; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Custom Cards */
         .sys-card { border: 1px solid #e2e8f0; background: white; transition: all 0.3s; overflow: hidden; display: flex; flex-direction: column; border-radius: 12px; }
         .sys-card:hover { border-color: var(--sys-blue); transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0, 132, 255, 0.1); }
         
@@ -48,12 +51,9 @@
                 <span class="text-[9px] text-slate-400 orbitron">V.2.6_MARCH</span>
             </div>
         </div>
-        <nav class="flex gap-6 md:gap-10 orbitron text-[10px] md:text-xs tracking-widest overflow-x-auto pb-2 custom-scroll">
-            <button onclick="switchTab('world')" id="tab-world" class="tab-btn active uppercase">World View</button>
-            <button onclick="switchTab('ASSOC')" id="tab-ASSOC" class="tab-btn uppercase">Association</button>
-            <button onclick="switchTab('BLUE')" id="tab-BLUE" class="tab-btn uppercase">Blue Dragon</button>
-            <button onclick="switchTab('WHITE')" id="tab-WHITE" class="tab-btn uppercase">White Night</button>
-            <button onclick="switchTab('INDIE')" id="tab-INDIE" class="tab-btn uppercase">Independent</button>
+        <nav class="flex gap-8 md:gap-12 orbitron text-[11px] md:text-sm tracking-widest pb-2">
+            <button onclick="switchMainTab('world')" id="tab-world" class="tab-btn active uppercase">World View</button>
+            <button onclick="switchMainTab('factions')" id="tab-factions" class="tab-btn uppercase">Faction Archive</button>
         </nav>
     </header>
 
@@ -63,7 +63,7 @@
                 <div class="lg:col-span-2 space-y-8">
                     <section class="bg-slate-900 text-white p-8 rounded-3xl relative overflow-hidden">
                         <div class="absolute top-0 right-0 p-4 orbitron text-6xl font-black opacity-5 uppercase select-none">Origin</div>
-                        <h2 class="orbitron text-2xl font-bold mb-6 text-blue-400">WORLD SYNOPSIS</h2>
+                        <h2 class="orbitron text-2xl font-bold mb-6 text-blue-400 uppercase tracking-widest">World Synopsis</h2>
                         <div class="space-y-5 text-slate-300 text-sm md:text-base leading-relaxed">
                             <p><b class="text-white">게이트의 출현:</b> 어느 날 갑자기 허공에 열린 차원의 통로 '게이트'를 통해 마물들이 쏟아져 나오며 인류는 위기에 처했습니다.</p>
                             <p><b class="text-white">각성자와 마석:</b> 게이트와 함께 특별한 능력을 얻은 '각성자'들이 등장했습니다. 이들의 심장 부근에는 강대한 에너지를 품은 '마석'이 생겨나며, 이는 각성자의 힘의 근원이자 생명줄이 됩니다.</p>
@@ -73,48 +73,32 @@
                             </div>
                         </div>
                     </section>
-
                     <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="gate-card">
-                            <h4 class="font-bold text-slate-800 text-sm mb-1">일반 게이트</h4>
-                            <p class="text-[11px] text-slate-500">정해진 주기에 따라 마물이 유출되는 일반적인 통로.</p>
-                        </div>
-                        <div class="gate-card border-l-red-500 bg-red-50">
-                            <h4 class="font-bold text-red-700 text-sm mb-1">브레이크 게이트</h4>
-                            <p class="text-[11px] text-red-600/70">보스 미처치 시 마물이 현실로 쏟아져 나오는 상태.</p>
-                        </div>
-                        <div class="gate-card border-l-purple-500 bg-purple-50">
-                            <h4 class="font-bold text-purple-700 text-sm mb-1">변이 게이트</h4>
-                            <p class="text-[11px] text-purple-600/70">내부 환경이 시시각각 변하는 예측 불가능한 구역.</p>
-                        </div>
+                        <div class="gate-card"><h4 class="font-bold text-slate-800 text-sm mb-1">일반 게이트</h4><p class="text-[11px] text-slate-500">정해진 주기에 따라 마물이 유출되는 일반적인 통로.</p></div>
+                        <div class="gate-card border-l-red-500 bg-red-50"><h4 class="font-bold text-red-700 text-sm mb-1">브레이크 게이트</h4><p class="text-[11px] text-red-600/70">보스 미처치 시 마물이 현실로 쏟아져 나오는 상태.</p></div>
+                        <div class="gate-card border-l-purple-500 bg-purple-50"><h4 class="font-bold text-purple-700 text-sm mb-1">변이 게이트</h4><p class="text-[11px] text-purple-600/70">내부 환경이 시시각각 변하는 예측 불가능한 구역.</p></div>
                     </section>
                 </div>
-
-                <aside class="bg-white border border-slate-200 p-6 rounded-3xl shadow-sm">
-                    <h2 class="orbitron text-sm font-black text-slate-900 mb-6 pb-2 border-b-2 border-slate-900 italic">RANKING SYSTEM</h2>
+                <aside class="bg-white border border-slate-200 p-6 rounded-3xl shadow-sm h-fit">
+                    <h2 class="orbitron text-sm font-black text-slate-900 mb-6 pb-2 border-b-2 border-slate-900 italic uppercase">Ranking System</h2>
                     <ul class="space-y-5">
-                        <li class="flex gap-4">
-                            <span class="rank-badge bg-red-500 text-white shrink-0 h-fit">S</span>
-                            <div><p class="text-xs font-bold text-slate-800">국가 전략급 무력</p><p class="text-[10px] text-slate-400">혼자서 거대 게이트 폐쇄 가능</p></div>
-                        </li>
-                        <li class="flex gap-4">
-                            <span class="rank-badge bg-blue-500 text-white shrink-0 h-fit">A-B</span>
-                            <div><p class="text-xs font-bold text-slate-800">숙련된 전투 요원</p><p class="text-[10px] text-slate-400">주요 길드의 핵심 전력</p></div>
-                        </li>
-                        <li class="flex gap-4">
-                            <span class="rank-badge bg-emerald-500 text-white shrink-0 h-fit">C-D</span>
-                            <div><p class="text-xs font-bold text-slate-800">일반 헌터</p><p class="text-[10px] text-slate-400">일반적인 마물 처리 가능</p></div>
-                        </li>
-                        <li class="flex gap-4">
-                            <span class="rank-badge bg-slate-400 text-white shrink-0 h-fit">E-F</span>
-                            <div><p class="text-xs font-bold text-slate-800">보조 요원</p><p class="text-[10px] text-slate-400">일반인보다 강함, 보조 업무 수행</p></div>
-                        </li>
+                        <li class="flex gap-4"><span class="rank-badge bg-red-500 text-white shrink-0 h-fit">S</span><div><p class="text-xs font-bold text-slate-800">국가 전략급 무력</p><p class="text-[10px] text-slate-400">혼자서 거대 게이트 폐쇄 가능</p></div></li>
+                        <li class="flex gap-4"><span class="rank-badge bg-blue-500 text-white shrink-0 h-fit">A-B</span><div><p class="text-xs font-bold text-slate-800">숙련된 전투 요원</p><p class="text-[10px] text-slate-400">주요 길드의 핵심 전력</p></div></li>
+                        <li class="flex gap-4"><span class="rank-badge bg-emerald-500 text-white shrink-0 h-fit">C-D</span><div><p class="text-xs font-bold text-slate-800">일반 헌터</p><p class="text-[10px] text-slate-400">일반적인 마물 처리 가능</p></div></li>
+                        <li class="flex gap-4"><span class="rank-badge bg-slate-400 text-white shrink-0 h-fit">E-F</span><div><p class="text-xs font-bold text-slate-800">보조 요원</p><p class="text-[10px] text-slate-400">일반인보다 강함, 보조 업무 수행</p></div></li>
                     </ul>
                 </aside>
             </div>
         </main>
 
         <main id="section-factions" class="content-section">
+            <div class="flex gap-2 overflow-x-auto pb-6 mb-4 custom-scroll">
+                <button onclick="renderFaction('ASSOC')" class="filter-btn active orbitron" id="btn-ASSOC">ASSOCIATION</button>
+                <button onclick="renderFaction('BLUE')" class="filter-btn orbitron" id="btn-BLUE">BLUE DRAGON</button>
+                <button onclick="renderFaction('WHITE')" class="filter-btn orbitron" id="btn-WHITE">WHITE NIGHT</button>
+                <button onclick="renderFaction('INDIE')" class="filter-btn orbitron" id="btn-INDIE">INDEPENDENT</button>
+            </div>
+
             <div class="mb-10 p-8 bg-white border border-slate-200 rounded-3xl relative overflow-hidden shadow-sm">
                 <div id="factionIcon" class="absolute -right-6 -bottom-6 orbitron text-[120px] font-black opacity-[0.03] uppercase italic select-none"></div>
                 <div class="relative z-10">
@@ -347,7 +331,7 @@
     weapon: "쌍검",
     height: "192cm",
     weight: "105kg",
-    quote: "무대는 내가 깔고, 시선도 내가 가져가. 그러면 판은 이미 내 거지.",
+    quote: "좋아, 판 깔렸네. 그럼 시원하게 한번 가보자고.",
     likes: "주목, 완성된 연출, 통제되는 무대",
     dislikes: "무관심 취급, 통제권 박탈, 방송 페이스 붕괴",
     hashtags: ["#백야", "#인플루언서", "#듀얼리스트", "#쌍검", "#이중인격"],
@@ -465,28 +449,28 @@
     ]
 }
             ];
-const factionInfo = {
-            'ASSOC': { title: "헌터 관리 협회 (ASSOCIATION)", desc: "국가 소속의 공식 기관으로 각성자 등록, 게이트 배정, 치안 유지를 담당합니다. 질서와 규율을 중시하며 모든 공인 헌터들의 활동을 감시하고 지원합니다.", keyword: "협회" },
-            'BLUE': { title: "청룡 (BLUE DRAGON)", desc: "공격적이고 실전 지향적인 대한민국 최대 규모의 길드입니다. 압도적인 무력을 바탕으로 난이도가 높은 대형 게이트 공략을 독점하다시피 주도합니다.", keyword: "청룡" },
-            'WHITE': { title: "백야 (WHITE NIGHT)", desc: "정보 수집과 특수 임무에 특화된 정예 조직입니다. 겉으로는 평화로운 엘리트 조직처럼 보이지만, 암시장의 흐름을 뒤에서 통제하며 보이지 않는 곳에서 영향력을 행사합니다.", keyword: "백야" },
-            'INDIE': { title: "무소속 (INDEPENDENT)", desc: "어느 단체에도 얽매이지 않고 자유롭게 활동하는 프리랜서 헌터들입니다. 뛰어난 실력으로 독자적인 길을 걷거나, 특정 집단에서 추방되어 경계의 대상이 된 인물들이 포함됩니다.", keyword: "무소속" }
+const factionData = {
+            'ASSOC': { title: "헌터 관리 협회 (ASSOCIATION)", desc: "국가 소속의 공식 기관으로 각성자 등록, 게이트 배정, 치안 유지를 담당합니다. 모든 공인 헌터들의 활동을 감시하고 지원합니다.", keyword: "협회" },
+            'BLUE': { title: "청룡 (BLUE DRAGON)", desc: "압도적인 무력을 바탕으로 난이도가 높은 대형 게이트 공략을 주도하는 대한민국 최대 규모의 길드입니다.", keyword: "청룡" },
+            'WHITE': { title: "백야 (WHITE NIGHT)", desc: "정보 수집과 특수 임무에 특화된 정예 조직입니다. 보이지 않는 곳에서 세상의 흐름을 통제합니다.", keyword: "백야" },
+            'INDIE': { title: "무소속 (INDEPENDENT)", desc: "어느 단체에도 얽매이지 않고 자유롭게 활동하는 프리랜서 또는 특정 집단에서 추방된 능력자들입니다.", keyword: "무소속" }
         };
 
-        function switchTab(tabId) {
+        function switchMainTab(tabId) {
             document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(`tab-${tabId}`).classList.add('active');
-
-            if (tabId === 'world') {
-                document.getElementById('section-world').classList.add('active');
-            } else {
-                document.getElementById('section-factions').classList.add('active');
-                renderFaction(tabId);
-            }
+            document.getElementById(`section-${tabId}`).classList.add('active');
+            
+            if(tabId === 'factions') renderFaction('ASSOC'); // 탭 전환 시 기본값
         }
 
         function renderFaction(factionKey) {
-            const info = factionInfo[factionKey];
+            // 필터 버튼 활성화 표시
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${factionKey}`).classList.add('active');
+
+            const info = factionData[factionKey];
             const grid = document.getElementById('characterGrid');
             document.getElementById('factionTitle').innerText = info.title;
             document.getElementById('factionDesc').innerText = info.desc;
@@ -497,11 +481,11 @@ const factionInfo = {
 
             document.getElementById('factionCount').innerText = `COUNT: ${filtered.length} UNITS`;
             grid.innerHTML = filtered.map(char => {
-                const originalIndex = characters.findIndex(c => c.idCode === char.idCode);
+                const idx = characters.findIndex(c => c.idCode === char.idCode);
                 return `
-                    <div class="sys-card p-2 cursor-pointer group" onclick="openModal(${originalIndex})">
+                    <div class="sys-card p-2 cursor-pointer group" onclick="openModal(${idx})">
                         <div class="overflow-hidden rounded-lg mb-2">
-                            <img src="${char.images[0]}" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-500" alt="${char.name}">
+                            <img src="${char.images[0]}" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-500">
                         </div>
                         <div class="p-1">
                             <span class="orbitron text-[8px] font-bold text-blue-600">${char.rank}</span>
@@ -522,7 +506,7 @@ const factionInfo = {
             document.getElementById('modalQuote').innerText = char.quote;
             document.getElementById('modalJob').innerText = char.job;
             document.getElementById('modalWeapon').innerText = char.weapon;
-            document.getElementById('modalHistory').innerText = char.history;
+            document.getElementById('modalHistory').innerHTML = char.history;
             document.getElementById('modalLikes').innerText = char.likes;
             document.getElementById('modalDislikes').innerText = char.dislikes;
             document.getElementById('modalHashtags').innerHTML = char.hashtags.map(tag => `<span class="px-2 py-1 bg-slate-100 text-slate-400 text-[9px] rounded font-medium">${tag}</span>`).join('');
