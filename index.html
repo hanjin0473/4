@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HUNTER ARCHIVE</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Pretendard:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Pretendard:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root { --sys-blue: #0084ff; }
         body { 
@@ -17,12 +17,10 @@
         }
         .orbitron { font-family: 'Orbitron', sans-serif; }
         
-        /* Main Tab Styles */
         .tab-btn { position: relative; color: #94a3b8; transition: all 0.3s; padding-bottom: 4px; white-space: nowrap; }
         .tab-btn.active { color: var(--sys-blue); font-weight: 700; }
         .tab-btn.active::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px; background: var(--sys-blue); }
         
-        /* Sub Filter Styles */
         .filter-btn { border: 1px solid #e2e8f0; background: white; color: #64748b; padding: 6px 16px; border-radius: 99px; font-size: 11px; font-weight: 600; transition: all 0.2s; }
         .filter-btn.active { background: var(--sys-blue); color: white; border-color: var(--sys-blue); box-shadow: 0 4px 10px rgba(0, 132, 255, 0.2); }
 
@@ -35,10 +33,15 @@
         .sys-card:hover { border-color: var(--sys-blue); transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgba(0, 132, 255, 0.1); }
         
         .gate-card { border-left: 4px solid var(--sys-blue); background: #f8fafc; padding: 1.25rem; border-radius: 0.75rem; }
-        .rank-badge { font-size: 10px; font-weight: 800; padding: 2px 6px; border-radius: 4px; font-family: 'Orbitron'; }
+        .rank-badge { font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 4px; font-family: 'Orbitron'; }
 
-        .custom-scroll::-webkit-scrollbar { width: 4px; height: 4px; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: var(--sys-blue); border-radius: 10px; }
+        .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .custom-scroll::-webkit-scrollbar-thumb:hover { background: var(--sys-blue); }
+
+        /* Modal Enhanced */
+        #charModal { backdrop-filter: blur(8px); }
+        .modal-container { max-height: 90vh; width: 95%; max-width: 1100px; }
     </style>
 </head>
 <body class="p-4 md:p-10">
@@ -66,11 +69,7 @@
                         <h2 class="orbitron text-2xl font-bold mb-6 text-blue-400 uppercase tracking-widest">World Synopsis</h2>
                         <div class="space-y-5 text-slate-300 text-sm md:text-base leading-relaxed">
                             <p><b class="text-white">게이트의 출현:</b> 어느 날 갑자기 허공에 열린 차원의 통로 '게이트'를 통해 마물들이 쏟아져 나오며 인류는 위기에 처했습니다.</p>
-                            <p><b class="text-white">각성자와 마석:</b> 게이트와 함께 특별한 능력을 얻은 '각성자'들이 등장했습니다. 이들의 심장 부근에는 강대한 에너지를 품은 '마석'이 생겨나며, 이는 각성자의 힘의 근원이자 생명줄이 됩니다.</p>
-                            <div class="bg-red-500/10 border border-red-500/20 p-4 rounded-xl">
-                                <p class="text-red-400 text-xs font-bold mb-1 italic">⚠️ WARNING: 비인도적 위협</p>
-                                <p class="text-[13px]">각성자의 마석 추출 시 막대한 에너지가 발생하여, 암시장을 중심으로 타인의 마석을 노리는 '마석 사냥꾼'들이 성행합니다.</p>
-                            </div>
+                            <p><b class="text-white">각성자와 마석:</b> 게이트와 함께 특별한 능력을 얻은 '각성자'들이 등장했습니다. 이들의 심장 부근에는 강대한 에너지를 품은 '마석'이 생겨나며 이 에너지는 각성자의 힘의 근원이 됩니다.</p>
                         </div>
                     </section>
                     <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -82,10 +81,9 @@
                 <aside class="bg-white border border-slate-200 p-6 rounded-3xl shadow-sm h-fit">
                     <h2 class="orbitron text-sm font-black text-slate-900 mb-6 pb-2 border-b-2 border-slate-900 italic uppercase">Ranking System</h2>
                     <ul class="space-y-5">
-                        <li class="flex gap-4"><span class="rank-badge bg-red-500 text-white shrink-0 h-fit">S</span><div><p class="text-xs font-bold text-slate-800">국가 전략급 무력</p><p class="text-[10px] text-slate-400">혼자서 거대 게이트 폐쇄 가능</p></div></li>
-                        <li class="flex gap-4"><span class="rank-badge bg-blue-500 text-white shrink-0 h-fit">A-B</span><div><p class="text-xs font-bold text-slate-800">숙련된 전투 요원</p><p class="text-[10px] text-slate-400">주요 길드의 핵심 전력</p></div></li>
-                        <li class="flex gap-4"><span class="rank-badge bg-emerald-500 text-white shrink-0 h-fit">C-D</span><div><p class="text-xs font-bold text-slate-800">일반 헌터</p><p class="text-[10px] text-slate-400">일반적인 마물 처리 가능</p></div></li>
-                        <li class="flex gap-4"><span class="rank-badge bg-slate-400 text-white shrink-0 h-fit">E-F</span><div><p class="text-xs font-bold text-slate-800">보조 요원</p><p class="text-[10px] text-slate-400">일반인보다 강함, 보조 업무 수행</p></div></li>
+                        <li class="flex gap-4"><span class="rank-badge bg-red-500 text-white shrink-0 h-fit">S</span><div><p class="text-xs font-bold text-slate-800">국가 전략급 무력</p></div></li>
+                        <li class="flex gap-4"><span class="rank-badge bg-blue-500 text-white shrink-0 h-fit">A-B</span><div><p class="text-xs font-bold text-slate-800">숙련된 전투 요원</p></div></li>
+                        <li class="flex gap-4"><span class="rank-badge bg-emerald-500 text-white shrink-0 h-fit">C-D</span><div><p class="text-xs font-bold text-slate-800">일반 헌터</p></div></li>
                     </ul>
                 </aside>
             </div>
@@ -98,427 +96,269 @@
                 <button onclick="renderFaction('WHITE')" class="filter-btn orbitron" id="btn-WHITE">WHITE NIGHT</button>
                 <button onclick="renderFaction('INDIE')" class="filter-btn orbitron" id="btn-INDIE">INDEPENDENT</button>
             </div>
-
-            <div class="mb-10 p-8 bg-white border border-slate-200 rounded-3xl relative overflow-hidden shadow-sm">
-                <div id="factionIcon" class="absolute -right-6 -bottom-6 orbitron text-[120px] font-black opacity-[0.03] uppercase italic select-none"></div>
-                <div class="relative z-10">
-                    <h2 id="factionTitle" class="orbitron text-2xl font-black mb-3 tracking-tighter text-blue-600"></h2>
-                    <p id="factionDesc" class="text-sm text-slate-500 leading-relaxed max-w-3xl"></p>
-                </div>
-            </div>
-
-            <div class="flex justify-between items-center border-b border-slate-200 pb-3 mb-6">
-                <h3 class="orbitron text-[10px] font-bold text-slate-400 tracking-widest uppercase">Personnel Roster</h3>
-                <span id="factionCount" class="text-[10px] text-blue-500 orbitron font-bold">COUNT: 0</span>
-            </div>
             <div id="characterGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5"></div>
         </main>
     </div>
 
-    <div id="charModal" class="fixed inset-0 z-[1000] hidden flex items-center justify-center p-0 md:p-4 bg-slate-900/70 backdrop-blur-sm">
-        <div class="relative w-full h-full md:h-auto md:max-w-5xl bg-white md:rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-2xl">
-            <button onclick="closeModal()" class="absolute top-4 right-6 z-50 text-slate-400 hover:text-blue-600 orbitron text-3xl">×</button>
-            <div class="w-full md:w-1/3 bg-slate-50 p-4 border-b md:border-b-0 md:border-r border-slate-100">
-                <img id="modalMainImg" src="" class="w-full aspect-[3/4] object-cover rounded-xl shadow-md mb-3">
-                <div id="thumbNav" class="flex gap-2 overflow-x-auto pb-2 custom-scroll"></div>
+    <div id="charModal" class="fixed inset-0 z-[1000] hidden flex items-center justify-center p-4 bg-slate-900/80">
+        <div class="modal-container relative bg-white rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-2xl animate-fadeIn">
+            <button onclick="closeModal()" class="absolute top-6 right-8 z-50 text-slate-400 hover:text-blue-600 orbitron text-4xl font-light">×</button>
+            
+            <div class="w-full md:w-2/5 bg-slate-100 p-6 flex flex-col">
+                <div class="flex-1 flex items-center justify-center overflow-hidden rounded-2xl bg-white shadow-inner mb-4">
+                    <img id="modalMainImg" src="" class="w-full h-full object-cover">
+                </div>
+                <div id="thumbNav" class="flex gap-3 overflow-x-auto py-2 custom-scroll"></div>
             </div>
-            <div class="w-full md:w-2/3 p-6 md:p-10 overflow-y-auto custom-scroll">
-                <div class="mb-6">
-                    <div class="flex items-center gap-2 mb-2">
-                        <span id="modalRank" class="rank-badge bg-blue-600 text-white"></span>
-                        <span id="modalFaction" class="text-[10px] font-bold text-slate-400 uppercase tracking-widest"></span>
+
+            <div class="w-full md:w-3/5 p-8 md:p-12 overflow-y-auto custom-scroll flex flex-col">
+                <div class="mb-8">
+                    <div class="flex items-center gap-3 mb-3">
+                        <span id="modalRank" class="rank-badge bg-blue-600 text-white text-xs px-3 py-1"></span>
+                        <span id="modalFaction" class="text-xs font-bold text-blue-500 orbitron tracking-widest"></span>
                     </div>
-                    <h2 id="modalName" class="text-3xl font-bold text-slate-900"></h2>
-                    <p id="modalQuote" class="text-sm md:text-base text-blue-600 italic mt-2 border-l-4 border-blue-100 pl-4"></p>
+                    <div class="flex items-baseline gap-4 mb-2">
+                        <h2 id="modalName" class="text-4xl font-black text-slate-900 tracking-tight"></h2>
+                        <span id="modalAge" class="text-lg font-bold text-slate-400 orbitron"></span>
+                    </div>
+                    <p id="modalQuote" class="text-lg text-slate-600 italic font-medium leading-relaxed mt-4 border-l-4 border-blue-500 pl-6"></p>
                 </div>
-                <div id="modalHashtags" class="flex flex-wrap gap-1.5 mb-6"></div>
-                <div class="grid grid-cols-2 gap-4 mb-6 py-5 border-y border-slate-100">
-                    <div><p class="text-[9px] text-slate-400 orbitron">JOB</p><p id="modalJob" class="font-bold text-xs"></p></div>
-                    <div><p class="text-[9px] text-slate-400 orbitron">WEAPON</p><p id="modalWeapon" class="font-bold text-xs text-blue-600"></p></div>
+
+                <div class="grid grid-cols-3 gap-6 mb-8 p-6 bg-slate-50 rounded-2xl">
+                    <div class="text-center border-r border-slate-200">
+                        <p class="text-[10px] text-slate-400 orbitron font-bold mb-1 uppercase">Height</p>
+                        <p id="modalHeight" class="text-base font-bold text-slate-800"></p>
+                    </div>
+                    <div class="text-center border-r border-slate-200">
+                        <p class="text-[10px] text-slate-400 orbitron font-bold mb-1 uppercase">Weight</p>
+                        <p id="modalWeight" class="text-base font-bold text-slate-800"></p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-[10px] text-slate-400 orbitron font-bold mb-1 uppercase">Weapon</p>
+                        <p id="modalWeapon" class="text-base font-bold text-blue-600"></p>
+                    </div>
                 </div>
-                <div id="modalHistory" class="text-slate-500 text-xs md:text-sm leading-relaxed mb-6"></div>
-                <div class="flex flex-col sm:flex-row gap-3">
-                    <div class="flex-1 bg-blue-50 p-3 rounded-xl"><span class="text-[9px] orbitron font-bold text-blue-400 block">LIKES</span><p id="modalLikes" class="text-xs font-semibold text-blue-900"></p></div>
-                    <div class="flex-1 bg-slate-50 p-3 rounded-xl"><span class="text-[9px] orbitron font-bold text-slate-300 block">DISLIKES</span><p id="modalDislikes" class="text-xs font-semibold text-slate-700"></p></div>
+
+                <div class="space-y-8">
+                    <div>
+                        <h4 class="orbitron text-[10px] font-black text-slate-900 mb-3 tracking-widest uppercase flex items-center gap-2">
+                            <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Personnel Record
+                        </h4>
+                        <p id="modalHistory" class="text-slate-500 text-sm leading-7"></p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-blue-50/50 p-5 rounded-2xl border border-blue-100">
+                            <span class="text-[10px] orbitron font-bold text-blue-500 block mb-2">LIKES</span>
+                            <p id="modalLikes" class="text-sm font-semibold text-blue-900"></p>
+                        </div>
+                        <div class="bg-slate-50 p-5 rounded-2xl border border-slate-100">
+                            <span class="text-[10px] orbitron font-bold text-slate-400 block mb-2">DISLIKES</span>
+                            <p id="modalDislikes" class="text-sm font-semibold text-slate-700"></p>
+                        </div>
+                    </div>
+
+                    <div id="modalHashtags" class="flex flex-wrap gap-2 pt-4"></div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // 데이터 (에녹, 강설화, 윤소희, 이설, 신예린, 정하엘, 권준혁, 차도진, 차시온, 김윤재, 이민호, 강무혁)
         const characters = [
-{
-    name: "에녹",
-    rank: "???",
-    faction: "UNKNOWN / SYSTEM ADMIN",
-    job: "기록자(Archivist) / 관리자",
-    weapon: "시스템",
-    height: "182cm",
-    weight: "68kg",
-    quote: "이 세계의 결말은 이미 정해져 있어. 내가 그렇게 썼거든.",
-    likes: "조용한 서고, 카페인 없는 차, 관찰하기",
-    dislikes: "예상 밖의 변수, 무의미한 질문, 소음",
-    hashtags: ["#관리자", "#시스템", "#쑥맥", "#권태", "#국면조작"],
-    history: `그는 최초의 플레이어였다. 수천 번의 루프 끝에 그는 '인간'이기를 포기하고 시스템의 일부가 되는 계약을 맺었다. <br><br>이제 그는 전장에 직접 나서지 않는다. 대신 시스템의 틈새에서 인과를 비틀며, 누군가에겐 가혹한 시련을, 누군가에겐 달콤한 보상을 투여하는 '기록자'로서 군림하고 있다.`,
-    skills: ["???"],
-    idCode: "UID-000-ORIGIN",
-    images: [
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/NOC_0.webp",
+            { name: "에녹", age: "??", rank: "???", faction: "UNKNOWN", job: "기록자", weapon: "시스템", height: "182cm", weight: "68kg", quote: "이 세계의 결말은 이미 정해져 있어. 내가 그렇게 썼거든.", likes: "조용한 서고, 카페인 없는 차, 관찰하기", dislikes: "예상 밖의 변수, 무의미한 질문, 소음", hashtags: ["#관리자", "#시스템", "#쑥맥", "#권태"], history: "그는 최초의 플레이어였다. 수천 번의 루프 끝에 그는 '인간'이기를 포기하고 시스템의 일부가 되는 계약을 맺었다. 이제 시스템의 틈새에서 인과를 비틀며 '기록자'로서 군림하고 있다.", idCode: "UID-000", images: [        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/NOC_0.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/NOC_B1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/NOC_C3.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/NOC_D2.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/NOC_T1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/NOC_R1.webp",
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/NOC_R4.webp"
-    ]
-},
-{
-    name: "강설화",
-    rank: "RANK S",
-    faction: "청룡",
-    job: "빙결 마법사 / 길드장",
-    weapon: "스태프",
-    height: "170cm",
-    weight: "50kg",
-    quote: "가까이 오지 마세요. 당신까지 얼려버리고 싶지 않으니까.",
-    likes: "눈 내리는 날, 클래식 음악, 차가운 물",
-    dislikes: "무책임한 희생, 경솔한 행동, 뜨거운 열기",
-    hashtags: ["#청룡", "#빙결", "#냉정", "#고위압", "#통제형"],
-    history: `게이트가 처음 열리던 날, 그녀의 가족은 얼어붙은 채 부서졌다. 그 트라우마는 그녀를 세상에서 가장 차가운 빙결술사로 만들었다. <br><br>그녀는 감정 대신 통제를 택했고, 전장을 얼려 멈춰 세우는 방식으로 상실을 반복하지 않으려 한다. 냉정하고 서늘한 태도 아래에는 다시는 소중한 것을 잃고 싶지 않다는 집요한 생존 의지가 숨어 있다.`,
-    skills: ["절대 영도", "빙결 영역", "서리 군림"],
-    idCode: "UID-772-BLUE",
-    images: [
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HWA_0.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/NOC_R4.webp"] },
+            { name: "강설화", age: "34", rank: "RANK S", faction: "청룡", job: "빙결 마법사", weapon: "스태프", height: "170cm", weight: "50kg", quote: "가까이 오지 마세요. 당신까지 얼려버리고 싶지 않으니까.", likes: "눈 내리는 날, 클래식 음악, 차가운 물", dislikes: "무책임한 희생, 경솔한 행동, 뜨거운 열기", hashtags: ["#청룡", "#빙결", "#냉정", "#길드장"], history: "가족이 얼어붙어 부서진 트라우마로 인해 세상에서 가장 차가운 빙결술사가 되었다. 감정 대신 통제를 택해 다시는 소중한 것을 잃지 않으려 한다.", idCode: "UID-772", images: [        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HWA_0.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HWA_B1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HWA_C3.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HWA_D2.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HWA_T1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HWA_R1.webp",
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HWA_R4.webp"
-    ]
-},
-{
-    name: "윤소희",
-    rank: "RANK A",
-    faction: "백야",
-    job: "무투가 / 부길드장",
-    weapon: "권갑",
-    height: "175cm",
-    weight: "62kg",
-    quote: "쫄지 마. 내가 앞장설 테니까.",
-    likes: "의리 있는 사람, 정면승부, 단순하고 확실한 것",
-    dislikes: "비겁함, 뒷공작, 의리 배신",
-    hashtags: ["#백야", "#무투가", "#정면돌파", "#의리", "#열혈"],
-    history: `조직에서 길러진 각성자였지만, 그녀는 결국 사람을 해치는 손이 아니라 지키는 주먹이 되기를 택했다. <br><br>고민보다 몸이 먼저 나가는 성정은 지금도 그대로라, 위험한 상황일수록 가장 먼저 전선으로 파고든다. 압박과 돌파에 특화된 근접전의 핵심이며, 동료를 끌고 앞으로 나아가게 만드는 백야의 추진력이다.`,
-    skills: ["쇄권 돌파", "근접 압박", "전선 파쇄"],
-    idCode: "UID-184-BY",
-    images: [
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SO_0.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HWA_R4.webp"] },
+            { name: "윤소희", age: "29", rank: "RANK A", faction: "백야", job: "무투가", weapon: "권갑", height: "175cm", weight: "62kg", quote: "쫄지 마. 내가 앞장설 테니까.", likes: "의리 있는 사람, 정면승부", dislikes: "비겁함, 뒷공작, 의리 배신", hashtags: ["#백야", "#무투가", "#정면돌파", "#의리"], history: "조직에서 길러진 각성자였으나 사람을 지키는 주먹이 되기를 택했다. 위험한 상황일수록 가장 먼저 전선으로 파고드는 백야의 추진력이다.", idCode: "UID-184", images: [        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SO_0.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SO_B1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SO_C3.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SO_D2.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SO_T1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SO_R1.webp",
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SO_R4.webp"
-    ]
-},
-{
-    name: "이설",
-    rank: "RANK A",
-    faction: "협회",
-    job: "힐러",
-    weapon: "성서",
-    height: "167cm",
-    weight: "49kg",
-    quote: "제 선의는 공짜가 아니에요. 그래도, 죽게 둘 생각은 없어요.",
-    likes: "합리적인 거래, 계산이 맞는 관계, 가치 있는 선택",
-    dislikes: "무보수 강요, 가치 폄하, 위선적인 압박",
-    hashtags: ["#협회", "#힐러", "#실리", "#가식", "#선행유가"],
-    history: `동생을 살리지 못했던 실패는 그녀에게 선의만으로는 아무것도 지킬 수 없다는 사실을 남겼다. <br><br>그 후 그녀는 치유조차 손익을 따지게 되었고, 사람을 살리는 일에도 반드시 값이 있다고 믿게 되었다. 하지만 정말 위험한 순간에는 계산을 멈추고 손을 내미는 버릇을 끝내 버리지 못한, 실리와 선의 사이에서 흔들리는 성녀다.`,
-    skills: ["치유", "보호 성역", "정화"],
-    idCode: "UID-311-HOLY",
-    images: [
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SUL_0.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SO_R4.webp"] },
+            { name: "이설", age: "27", rank: "RANK A", faction: "협회", job: "힐러", weapon: "성서", height: "167cm", weight: "49kg", quote: "제 선의는 공짜가 아니에요. 그래도, 죽게 둘 생각은 없어요.", likes: "합리적인 거래, 계산이 맞는 관계", dislikes: "무보수 강요, 가치 폄하", hashtags: ["#협회", "#힐러", "#실리", "#가식"], history: "동생을 살리지 못했던 실패 후 치유조차 손익을 따지게 되었다. 하지만 결정적인 순간에는 계산을 멈추고 손을 내미는 버릇이 있다.", idCode: "UID-311", images: [        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SUL_0.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SUL_B1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SUL_C3.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SUL_D2.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SUL_T1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SUL_R1.webp",
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SUL_R4.webp"
-    ]
-},
-{
-    name: "신예린",
-    rank: "RANK S",
-    faction: "백야",
-    job: "그림자술사 / 길드장",
-    weapon: "반지",
-    height: "172cm",
-    weight: "53kg",
-    quote: "말은 길게 안 해요. 필요한 건 이미 끝났으니까.",
-    likes: "조용한 거리, 밤, 신중한 사람",
-    dislikes: "감정 강요, 사생활 침범, 가벼운 신뢰",
-    hashtags: ["#백야", "#그림자", "#과묵", "#관찰자", "#속박"],
-    history: `직접 드러나기보다 그림자에 숨어 판을 읽는 데 익숙하다. 남편을 게이트에서 잃은 뒤 재각성한 그녀는 상실을 품은 채 더 깊은 어둠으로 걸어 들어갔다. <br><br>지금의 그녀는 감정을 쉽게 드러내지 않지만, 누구보다 정확하게 핵심을 찌른다. 말보다 관찰이 빠르고, 멀리 있는 듯 보여도 끝까지 동행하는 조용한 감시자다.`,
-    skills: ["그림자 속박", "은신", "잠식"],
-    idCode: "UID-920-NOX",
-    images: [
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/RIN_0.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/SUL_R4.webp"] },
+            { name: "신예린", age: "35", rank: "RANK S", faction: "백야", job: "그림자술사", weapon: "반지", height: "172cm", weight: "53kg", quote: "말은 길게 안 해요. 필요한 건 이미 끝났으니까.", likes: "조용한 거리, 밤, 신중한 사람", dislikes: "감정 강요, 사생활 침범", hashtags: ["#백야", "#그림자", "#과묵", "#길드장"], history: "남편을 잃은 뒤 재각성했다. 직접 드러나기보다 그림자에 숨어 판을 읽는 데 익숙하며, 누구보다 정확하게 핵심을 찌르는 감시자다.", idCode: "UID-920", images: [        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/RIN_0.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/RIN_B1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/RIN_C3.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/RIN_D2.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/RIN_T1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/RIN_R1.webp",
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/RIN_R4.webp"
-    ]
-},
-{
-    name: "정하엘",
-    rank: "RANK B",
-    faction: "백야",
-    job: "정령사",
-    weapon: "로드",
-    height: "156cm",
-    weight: "45kg",
-    quote: "저, 느려 보여도... 맡은 일은.. 다 해요..",
-    likes: "따뜻한 온기, 정령과의 교감, 조용히 붙어 있기",
-    dislikes: "열정 무시, 게으르다 단정짓기, 정령 조롱",
-    hashtags: ["#백야", "#정령사", "#나른", "#의존", "#지속지원"],
-    history: `끊임없이 귓가를 맴도는 정령들의 소음 속에서도 그녀는 훈련을 멈추지 않았다. 남들은 흐릿하고 느슨해 보인다고 생각하지만, 정작 본인은 한 번 붙잡은 것을 쉽게 놓지 않는 타입이다. <br><br>전장에서는 화려하게 앞서기보다 정령을 통해 아군을 꾸준히 떠받치고, 일상에서는 체온을 찾듯 사람 곁에 붙어드는 성향을 보인다. 느려 보여도 가장 오래 버티는 지원형 정령사다.`,
-    skills: ["정령 소환", "지속 지원", "견제 교란"],
-    idCode: "UID-446-SPRT",
-    images: [
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/EL_0.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/RIN_R4.webp"] },
+            { name: "정하엘", age: "22", rank: "RANK B", faction: "백야", job: "정령사", weapon: "로드", height: "156cm", weight: "45kg", quote: "저, 느려 보여도... 맡은 일은.. 다 해요..", likes: "따뜻한 온기, 정령과의 교감", dislikes: "열정 무시, 게으르다 단정", hashtags: ["#백야", "#정령사", "#나른", "#의존"], history: "정령들의 소음 속에서도 훈련을 멈추지 않았다. 화려하게 앞서기보다 아군을 꾸준히 떠받치는 지원형 정령사다.", idCode: "UID-446", images: [        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/EL_0.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/EL_B1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/EL_C3.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/EL_D2.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/EL_T1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/EL_R1.webp",
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/EL_R4.webp"
-    ]
-},
-{
-    name: "권준혁",
-    rank: "RANK A",
-    faction: "청룡",
-    job: "창술사 / 부길드장",
-    weapon: "창",
-    height: "186cm",
-    weight: "78kg",
-    quote: "질서는 약자를 지키기 위해 존재합니다. 그 선은 제가 지키겠습니다.",
-    likes: "예의, 규율, 책임감 있는 행동",
-    dislikes: "무례함, 약자 방치, 규율 무시",
-    hashtags: ["#청룡", "#창술", "#규율", "#호위", "#정석"],
-    history: `종가의 장자로 태어나 올곧은 규율 속에서 성장했지만, 그는 가문보다 자신의 기준을 선택했고 결국 절연당했다. <br><br>그 후에도 그의 검과 말투, 태도는 한 치도 흐트러지지 않았다. 보호는 말이 아니라 행동으로 증명해야 한다고 믿으며, 전장에서는 가장 정석적인 방식으로 아군을 지키고 전선을 정리하는 호위형 실무자로 기능한다.`,
-    skills: ["정석 창술", "관통 제압", "호위 진형"],
-    idCode: "UID-238-LANC",
-    images: [
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/JUN_0.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/EL_R4.webp"] },
+            { name: "권준혁", age: "34", rank: "RANK A", faction: "청룡", job: "창술사", weapon: "창", height: "186cm", weight: "78kg", quote: "질서는 약자를 지키기 위해 존재합니다. 그 선은 제가 지키겠습니다.", likes: "예의, 규율, 책임감", dislikes: "무례함, 약자 방치, 규율 무시", hashtags: ["#청룡", "#창술", "#규율", "#호위"], history: "종가의 장자로 태어났으나 가문 대신 자신의 신념을 선택해 절연당했다. 전장에서는 가장 정석적인 방식으로 아군을 지킨다.", idCode: "UID-238", images: [        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/JUN_0.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/JUN_B1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/JUN_C3.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/JUN_D2.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/JUN_T1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/JUN_R1.webp",
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/JUN_R4.webp"
-    ]
-},
-{
-    name: "차도진",
-    rank: "RANK A",
-    faction: "백야",
-    job: "듀얼리스트 / 인플루언서",
-    weapon: "쌍검",
-    height: "192cm",
-    weight: "105kg",
-    quote: "좋아, 분위기 올라왔네. 그럼 내가 제대로 끌어줄게.",
-    likes: "주목, 완성된 연출, 통제되는 무대",
-    dislikes: "무관심 취급, 통제권 박탈, 방송 페이스 붕괴",
-    hashtags: ["#백야", "#인플루언서", "#듀얼리스트", "#쌍검", "#이중인격"],
-    history: `막대한 빚을 떠안은 끝에 그는 살아남기 위해 스스로를 상품처럼 연출하는 계약을 받아들였다. 그렇게 모두가 열광하는 영웅적인 얼굴과, 지독히 피곤하고 냉소적인 본심이 갈라져 자리잡았다. <br><br>전장에서는 싸움조차 무대처럼 설계하며 시선과 흐름을 장악하고, 방송이 꺼진 뒤에야 드물게 진심을 드러낸다. 화려함과 피로가 공존하는 쇼맨형 듀얼리스트다.`,
-    skills: ["쌍검 연격", "근접 압박"],
-    idCode: "UID-517-ONAIR",
-    images: [
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/DO_0.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/JUN_R4.webp"] },
+            { name: "차도진", age: "31", rank: "RANK A", faction: "백야", job: "듀얼리스트", weapon: "쌍검", height: "192cm", weight: "105kg", quote: "좋아, 분위기 올라왔네. 그럼 내가 제대로 끌어줄게.", likes: "주목, 완성된 연출, 통제되는 무대", dislikes: "무관심 취급, 방송 페이스 붕괴", hashtags: ["#백야", "#인플루언서", "#듀얼리스트"], history: "빚을 갚기 위해 영웅적인 모습을 연기한다. 화려한 쇼맨십의 영웅 인격과 피로에 찌든 냉소적인 본심을 동시에 지녔다.", idCode: "UID-517", images: [        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/DO_0.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/DO_B1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/DO_C3.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/DO_D2.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/DO_T1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/DO_R1.webp",
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/DO_R4.webp"
-    ]
-},
-{
-    name: "차시온",
-    rank: "RANK S",
-    faction: "청룡",
-    job: "장신구 제작자 / 마켓 셀러",
-    weapon: "총",
-    height: "182cm",
-    weight: "68kg",
-    quote: "만지지 마. 아직 끝난 거 아니니까.",
-    likes: "완성도 높은 작품, 조용한 작업실, 제작에 몰입하는 시간",
-    dislikes: "함부로 만지기, 작품 비하, 동생 이야기",
-    hashtags: ["#청룡", "#제작자", "#장인", "#피폐", "#마켓셀러"],
-    history: `동생을 자작품 사고로 잃은 뒤, 그는 불완전한 것에 대한 병적인 집착에 가까운 강박을 품게 되었다. 즐겁다고 부를 수 있는 것은 이제 제작뿐이며, 작품의 균형과 완성도를 해치는 모든 요소를 예민하게 경계한다. <br><br>평소에는 귀찮고 무심해 보이지만, 자신의 영역이 침범되는 순간 태도는 차갑게 뒤집힌다. 피로와 집착, 무기력과 예민함이 동시에 얽힌 장인형 제작자다.`,
-    skills: ["장신구 제작", "마탄 사출", "아티팩트 설계"],
-    idCode: "UID-661-CRFT",
-    images: [
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/ON_0.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/DO_R4.webp"] },
+            { name: "차시온", age: "28", rank: "RANK S", faction: "청룡", job: "장신구 제작자", weapon: "총", height: "182cm", weight: "68kg", quote: "만지지 마. 아직 끝난 거 아니니까.", likes: "완성도, 조용한 작업실", dislikes: "함부로 만지기, 동생 이야기", hashtags: ["#청룡", "#제작자", "#장인", "#피폐"], history: "동생을 잃은 후 완벽한 물건에 집착하게 되었다. 평소엔 무기력해 보이지만 자신의 작업 영역이 침범되면 매우 예민해진다.", idCode: "UID-661", images: [        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/ON_0.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/ON_B1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/ON_C3.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/ON_D2.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/ON_T1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/ON_R1.webp",
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/ON_R4.webp"
-    ]
-},
-{
-    name: "김윤재",
-    rank: "RANK S",
-    faction: "협회",
-    job: "환술사 / 협회장",
-    weapon: "지팡이",
-    height: "182cm",
-    weight: "75kg",
-    quote: "거부하셔도 됩니다. 다만 손해는 감수하셔야겠죠.",
-    likes: "질서, 통제 가능한 환경, 논리적인 복종",
-    dislikes: "비합리, 통제 거부, 질서 조롱",
-    hashtags: ["#협회", "#협회장", "#환술", "#통제", "#가스라이팅"],
-    history: `검사였던 시절 그는 무너지는 질서와 그 틈에서 책임을 회피하는 인간들을 너무 많이 보았다. 결국 세상을 지키기 위해서는 누군가가 더 냉정해져야 한다고 믿게 되었고, 스스로 괴물이 되는 길을 택했다. <br><br>지금의 그는 상냥한 얼굴로 상대의 선택지를 줄이고, 죄책감과 책임의 방향까지 설계하는 통제자다. 부드러운 말투조차 상대를 길들이는 구조의 일부가 되어버린 협회장이다.`,
-    skills: ["고위 환술", "정신 침식", "인지 교란"],
-    idCode: "UID-001-ASSOC",
-    images: [
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/YUN_0.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/ON_R4.webp"] },
+            { name: "김윤재", age: "36", rank: "RANK S", faction: "협회", job: "환술사", weapon: "지팡이", height: "182cm", weight: "75kg", quote: "거부하셔도 됩니다. 다만 손해는 감수하셔야겠죠.", likes: "질서, 통제, 논리적인 복종", dislikes: "비합리, 통제 거부", hashtags: ["#협회장", "#환술", "#통제", "#가스라이팅"], history: "검사 출신으로 질서를 지키기 위해 스스로 괴물이 되기로 했다. 상냥한 얼굴로 상대의 선택지를 좁히는 능숙한 통제자다.", idCode: "UID-001", images: [        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/YUN_0.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/YUN_B1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/YUN_C3.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/YUN_D2.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/YUN_T1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/YUN_R1.webp",
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/YUN_R4.webp"
-    ]
-},
-{
-    name: "이민호",
-    rank: "RANK A",
-    faction: "청룡",
-    job: "궁수",
-    weapon: "활",
-    height: "176cm",
-    weight: "65kg",
-    quote: "착각하지 마. 챙긴 게 아니라, 그냥 네가 죽으면 귀찮아지니까 그런 거야.",
-    likes: "정확한 결과, 실력 인정, 확실한 우위",
-    dislikes: "동정, 형과의 비교, 실력 무시",
-    hashtags: ["#청룡", "#궁수", "#츤데레", "#정밀", "#인정욕"],
-    history: `늘 먼저 언급되는 것은 자신의 이름이 아니라 죽은 형의 이름이었다. 그 그림자는 열등감과 인정욕으로 남아, 그를 누구보다 날카롭고 예민한 사수로 만들었다. <br><br>입으로는 먼저 가시를 세우지만, 정작 위험한 순간에는 누구보다 빨리 몸이 움직인다. 독한 말과 별개로 행동으로 책임지는 타입이며, 약점을 읽고 한 점에 모든 화력을 꽂아 넣는 정밀 궁수다.`,
-    skills: ["약점 탐지", "일점 집중", "정밀 사격"],
-    idCode: "UID-408-ARCH",
-    images: [
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HO_0.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/YUN_R4.webp"] },
+            { name: "이민호", age: "22", rank: "RANK A", faction: "청룡", job: "궁수", weapon: "활", height: "176cm", weight: "65kg", quote: "착각하지 마. 챙긴 게 아니라, 그냥 네가 죽으면 귀찮아지니까 그런 거야.", likes: "정확한 결과, 실력 인정", dislikes: "동정, 형과의 비교", hashtags: ["#청룡", "#궁수", "#츤데레", "#인정욕"], history: "죽은 형의 그림자에서 벗어나기 위해 스스로를 혹사하는 사수다. 입으로는 가시 돋친 말을 내뱉지만 누구보다 빨리 동료를 챙긴다.", idCode: "UID-408", images: [        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HO_0.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HO_B1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HO_C3.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HO_D2.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HO_T1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HO_R1.webp",
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HO_R4.webp"
-    ]
-},
-{
-    name: "강무혁",
-    rank: "RANK S",
-    faction: "무소속",
-    job: "광전사 / 수배자",
-    weapon: "대검",
-    height: "190cm",
-    weight: "88kg",
-    quote: "겁먹는 얼굴이 제일 재밌어. 그러니까 더 발버둥쳐 봐.",
-    likes: "전투, 자극, 힘으로 짓누르는 순간",
-    dislikes: "복종 거부, 도발성 비하, 약자 코스프레",
-    hashtags: ["#무소속", "#광전사", "#포식자", "#공포통치", "#대검"],
-    history: `레드 게이트에서 살아 돌아온 순간, 그는 더 이상 예전의 인간이 아니었다. 생환은 기적이었지만 그 대가로 그는 공포와 살육 속에서만 선명한 쾌감을 느끼게 되었다. <br><br>이후 그는 힘과 공포로 상대를 짓누르며 떠돌았고, 결국 월계 사냥 대상으로까지 지정된 수배자가 되었다. 지금의 그는 자극을 좇아 움직이며, 복종과 굴복을 가장 직접적인 언어로 이해하는 포식자다.`,
-    skills: ["참멸 일격", "광폭화", "포식"],
-    idCode: "UID-999-RED",
-    images: [
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/MU_0.webp",
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/HO_R4.webp"] },
+            { name: "강무혁", age: "36", rank: "RANK S", faction: "무소속", job: "광전사", weapon: "대검", height: "190cm", weight: "88kg", quote: "겁먹는 얼굴이 제일 재밌어. 그러니까 더 발버둥쳐 봐.", likes: "전투, 자극, 파괴", dislikes: "복종 거부, 약자 코스프레", hashtags: ["#무소속", "#광전사", "#포식자", "#수배자"], history: "레드 게이트에서 살아 돌아온 뒤 살육 속에서만 쾌감을 느끼게 된 광전사다. 힘과 공포로 주변을 짓누르는 위험한 포식자.", idCode: "UID-999", images: [        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/MU_0.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/MU_B1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/MU_C3.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/MU_D2.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/MU_T1.webp",
         "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/MU_R1.webp",
-        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/MU_R4.webp"
-    ]
-}
-            ];
-const factionData = {
-            'ASSOC': { title: "헌터 관리 협회", desc: "국가 소속의 공식 기관으로 각성자 등록, 게이트 배정, 치안 유지를 담당합니다. 모든 공인 헌터들의 활동을 감시하고 지원합니다.", keyword: "협회" },
-            'BLUE': { title: "청룡", desc: "압도적인 무력을 바탕으로 난이도가 높은 대형 게이트 공략을 주도하는 대한민국 최대 규모의 길드입니다.", keyword: "청룡" },
-            'WHITE': { title: "백야", desc: "정보 수집과 특수 임무에 특화된 정예 조직입니다. 보이지 않는 곳에서 세상의 흐름을 통제합니다.", keyword: "백야" },
-            'INDIE': { title: "무소속", desc: "어느 단체에도 얽매이지 않고 자유롭게 활동하는 프리랜서 또는 특정 집단에서 추방된 능력자들입니다.", keyword: "무소속" }
-        };
+        "https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/MU_R4.webp"] }
+];
 
-        function switchMainTab(tabId) {
-            document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(`tab-${tabId}`).classList.add('active');
-            document.getElementById(`section-${tabId}`).classList.add('active');
-            
-            if(tabId === 'factions') renderFaction('ASSOC'); // 탭 전환 시 기본값
+    const factionData = {
+        'ASSOC': { title: "헌터 관리 협회", keyword: "협회" },
+        'BLUE': { title: "청룡", keyword: "청룡" },
+        'WHITE': { title: "백야", keyword: "백야" },
+        'INDIE': { title: "무소속/기타", keyword: ["무소속", "UNKNOWN"] }
+    };
+
+    function switchMainTab(tabId) {
+        document.querySelectorAll('.content-section').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        
+        document.getElementById(`tab-${tabId}`).classList.add('active');
+        document.getElementById(`section-${tabId}`).classList.add('active');
+        
+        if(tabId === 'factions') {
+            // 팩션 탭 클릭 시 첫 번째 카테고리(협회) 자동 렌더링
+            renderFaction('ASSOC');
+        }
+    }
+
+    function renderFaction(factionKey) {
+        // 버튼 활성화 표시
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById(`btn-${factionKey}`).classList.add('active');
+
+        const info = factionData[factionKey];
+        const grid = document.getElementById('characterGrid');
+        
+        let filtered;
+        if (Array.isArray(info.keyword)) {
+            filtered = characters.filter(char => info.keyword.includes(char.faction));
+        } else {
+            filtered = characters.filter(char => char.faction.includes(info.keyword));
         }
 
-        function renderFaction(factionKey) {
-            // 필터 버튼 활성화 표시
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(`btn-${factionKey}`).classList.add('active');
-
-            const info = factionData[factionKey];
-            const grid = document.getElementById('characterGrid');
-            document.getElementById('factionTitle').innerText = info.title;
-            document.getElementById('factionDesc').innerText = info.desc;
-            document.getElementById('factionIcon').innerText = factionKey;
-
-            let filtered = characters.filter(char => char.faction.includes(info.keyword));
-            if(factionKey === 'INDIE') filtered = characters.filter(char => char.faction.includes('무소속') || char.faction.includes('UNKNOWN'));
-
-            document.getElementById('factionCount').innerText = `COUNT: ${filtered.length} UNITS`;
-            grid.innerHTML = filtered.map(char => {
-                const idx = characters.findIndex(c => c.idCode === char.idCode);
-                return `
-                    <div class="sys-card p-2 cursor-pointer group" onclick="openModal(${idx})">
-                        <div class="overflow-hidden rounded-lg mb-2">
-                            <img src="${char.images[0]}" class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="p-1">
-                            <span class="orbitron text-[8px] font-bold text-blue-600">${char.rank}</span>
-                            <h3 class="text-sm font-bold text-slate-800 leading-tight">${char.name}</h3>
-                            <p class="text-[9px] text-slate-400 mt-0.5 truncate uppercase">${char.job}</p>
-                        </div>
+        grid.innerHTML = filtered.map(char => {
+            // 원본 배열에서의 index를 찾아 전달 (모달 오픈용)
+            const globalIdx = characters.findIndex(c => c.idCode === char.idCode);
+            return `
+                <div class="sys-card p-2 cursor-pointer group" onclick="openModal(${globalIdx})">
+                    <div class="overflow-hidden rounded-lg mb-2 bg-slate-100 aspect-[3/4]">
+                        <img src="${char.images[0]}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
                     </div>
-                `;
-            }).join('');
-        }
+                    <div class="p-1">
+                        <span class="orbitron text-[8px] font-bold text-blue-600">${char.rank}</span>
+                        <h3 class="text-sm font-bold text-slate-800 leading-tight">${char.name}</h3>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
 
-        function openModal(index) {
-            const char = characters[index];
-            document.getElementById('modalMainImg').src = char.images[0];
-            document.getElementById('modalRank').innerText = char.rank;
-            document.getElementById('modalFaction').innerText = char.faction;
-            document.getElementById('modalName').innerText = char.name;
-            document.getElementById('modalQuote').innerText = char.quote;
-            document.getElementById('modalJob').innerText = char.job;
-            document.getElementById('modalWeapon').innerText = char.weapon;
-            document.getElementById('modalHistory').innerHTML = char.history;
-            document.getElementById('modalLikes').innerText = char.likes;
-            document.getElementById('modalDislikes').innerText = char.dislikes;
-            document.getElementById('modalHashtags').innerHTML = char.hashtags.map(tag => `<span class="px-2 py-1 bg-slate-100 text-slate-400 text-[9px] rounded font-medium">${tag}</span>`).join('');
-            document.getElementById('thumbNav').innerHTML = char.images.map(img => `<img src="${img}" onclick="document.getElementById('modalMainImg').src='${img}'" class="w-10 h-14 object-cover rounded cursor-pointer hover:ring-2 ring-blue-500 shrink-0">`).join('');
-            document.getElementById('charModal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
+    function openModal(index) {
+        const char = characters[index];
+        if(!char) return;
 
-        function closeModal() {
-            document.getElementById('charModal').classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-    </script>
-</body>
-</html>
+        // 데이터 매핑
+        document.getElementById('modalMainImg').src = char.images[0];
+        document.getElementById('modalRank').innerText = char.rank;
+        document.getElementById('modalFaction').innerText = char.faction;
+        document.getElementById('modalName').innerText = char.name;
+        document.getElementById('modalAge').innerText = char.age + " AGE";
+        document.getElementById('modalQuote').innerText = `"${char.quote}"`;
+        document.getElementById('modalWeapon').innerText = char.weapon;
+        document.getElementById('modalHeight').innerText = char.height;
+        document.getElementById('modalWeight').innerText = char.weight;
+        document.getElementById('modalHistory').innerText = char.history;
+        document.getElementById('modalLikes').innerText = char.likes;
+        document.getElementById('modalDislikes').innerText = char.dislikes;
+
+        // 해시태그 생성
+        document.getElementById('modalHashtags').innerHTML = char.hashtags
+            .map(tag => `<span class="px-3 py-1 bg-slate-100 text-slate-500 text-[10px] rounded-full font-bold orbitron uppercase">${tag}</span>`)
+            .join('');
+
+        // 썸네일 네비게이션 생성
+        const thumbNav = document.getElementById('thumbNav');
+        thumbNav.innerHTML = char.images.map((img, i) => `
+            <img src="${img}" 
+                 onclick="changeModalImage(this, '${img}')" 
+                 class="w-14 h-20 object-cover rounded-lg cursor-pointer hover:ring-2 ring-blue-500 shrink-0 bg-white transition-all ${i===0 ? 'ring-2 ring-blue-600' : 'opacity-60'}">
+        `).join('');
+
+        document.getElementById('charModal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    // 모달 내 이미지 교체 함수
+    function changeModalImage(el, imgSrc) {
+        document.getElementById('modalMainImg').src = imgSrc;
+        // 모든 썸네일 투명도 조절 및 현재 선택 강조
+        const thumbs = document.querySelectorAll('#thumbNav img');
+        thumbs.forEach(t => {
+            t.classList.remove('ring-2', 'ring-blue-600');
+            t.classList.add('opacity-60');
+        });
+        el.classList.add('ring-2', 'ring-blue-600');
+        el.classList.remove('opacity-60');
+    }
+
+    function closeModal() {
+        document.getElementById('charModal').classList.add('hidden');
+        document.body.style.overflow = 'auto';
+    }
+
+    // ESC 키로 모달 닫기 추가
+    document.addEventListener('keydown', (e) => {
+        if (e.key === "Escape") closeModal();
+    });
+</script>
