@@ -100,33 +100,89 @@
 </div>
         </main>
 
-        <main id="section-world" class="content-section">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
-                <div class="lg:col-span-2 space-y-6 md:space-y-8">
-                    <section class="bg-slate-900 text-white p-6 md:p-8 rounded-2xl md:rounded-3xl relative overflow-hidden">
-                        <div class="absolute top-0 right-0 p-4 orbitron text-4xl md:text-6xl font-black opacity-5 uppercase select-none">Origin</div>
-                        <h2 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-blue-400 uppercase tracking-widest">세계관 시놉시스</h2>
-                        <div class="space-y-4 text-slate-300 text-xs md:text-base leading-relaxed">
-                            <p><b class="text-white">게이트의 출현:</b> 어느 날 갑자기 허공에 열린 차원의 통로 '게이트'를 통해 마물들이 쏟아져 나오며 인류는 위기에 처했습니다.</p>
-                            <p><b class="text-white">각성자와 마석:</b> 게이트와 함께 특별한 능력을 얻은 '각성자'들이 등장했습니다. 이들의 에너지는 심장 부근의 '마석'에서 기인합니다.</p>
-                        </div>
-                    </section>
-                    <section class="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 text-sm">
-                        <div class="border-l-4 border-blue-500 bg-white p-4 rounded-xl shadow-sm"><h4 class="font-bold text-slate-800 mb-1">일반 게이트</h4><p class="text-[11px] text-slate-500">마물이 유출되는 일반적인 통로.</p></div>
-                        <div class="border-l-4 border-red-500 bg-red-50 p-4 rounded-xl shadow-sm"><h4 class="font-bold text-red-700 mb-1">게이트 브레이크</h4><p class="text-[11px] text-red-600/70">마물이 현실로 쏟아져 나오는 상태.</p></div>
-                        <div class="border-l-4 border-purple-500 bg-purple-50 p-4 rounded-xl shadow-sm"><h4 class="font-bold text-purple-700 mb-1">레드 게이트</h4><p class="text-[11px] text-purple-600/70">예측 불가능한 특수 구역.</p></div>
-                    </section>
-                </div>
-                <aside class="bg-white border border-slate-200 p-6 rounded-2xl md:rounded-3xl shadow-sm h-fit">
-                    <h2 class="text-xs font-black text-slate-900 mb-6 pb-2 border-b-2 border-slate-900 italic uppercase">랭킹 시스템</h2>
-                    <ul class="space-y-4">
-                        <li class="flex items-center gap-4"><span class="rank-badge bg-red-500 text-white shrink-0">S</span><p class="text-[11px] md:text-xs font-bold text-slate-800">국가 전략급 무력</p></li>
-                        <li class="flex items-center gap-4"><span class="rank-badge bg-blue-500 text-white shrink-0">A-B</span><p class="text-[11px] md:text-xs font-bold text-slate-800">숙련된 전투 요원</p></li>
-                        <li class="flex items-center gap-4"><span class="rank-badge bg-emerald-500 text-white shrink-0">C-D</span><p class="text-[11px] md:text-xs font-bold text-slate-800">일반 헌터 요원</p></li>
-                    </ul>
-                </aside>
+<main id="section-world" class="content-section">
+    <div class="space-y-8 md:space-y-12">
+        
+        <section class="bg-slate-900 text-white p-8 md:p-12 rounded-[2.5rem] relative overflow-hidden shadow-2xl">
+            <div class="absolute top-0 right-0 p-4 orbitron text-5xl md:text-7xl font-black opacity-5 uppercase select-none">Origin</div>
+            <h2 class="text-xl md:text-2xl font-bold mb-6 text-blue-400 uppercase tracking-widest flex items-center gap-3">
+                <span class="w-8 h-[1px] bg-blue-400"></span> 세계관 시놉시스
+            </h2>
+            <div class="text-slate-300 text-sm md:text-lg leading-relaxed font-medium italic">
+                <p>"어느 날 허공을 가르고 나타난 게이트와 마물, 그에 맞서 심장 속 마석의 힘을 깨운 각성자들의 위태로운 공존이 시작되었습니다."</p>
             </div>
-        </main>
+        </section>
+
+        <section id="section-worldview" class="relative py-10 overflow-hidden">
+            <div class="absolute inset-0 z-0 bg-[url('https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/0.webp')] bg-cover bg-fixed opacity-[0.03] grayscale"></div>
+
+            <div class="relative z-10 space-y-16">
+                <div class="space-y-10">
+                    <div class="text-center">
+                        <h2 class="orbitron text-3xl font-black tracking-tighter text-slate-900 uppercase">Organizations</h2>
+                        <p class="text-slate-500 text-sm mt-2 font-bold">주요 세력 및 길드</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                        <div class="group bg-white/70 backdrop-blur-xl border border-slate-200 p-8 rounded-[2rem] shadow-lg hover:shadow-2xl transition-all">
+                            <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/2.webp" class="w-full aspect-square object-cover rounded-2xl mb-6 grayscale group-hover:grayscale-0 transition-all">
+                            <h4 class="text-xl font-black text-slate-800 mb-2">헌터 협회</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">등록부터 통제까지 담당하는 공식 기관. 미등록 각성자 및 불법 공략을 단속하는 절대적 권한을 가집니다.</p>
+                        </div>
+
+                        <div class="group bg-white/70 backdrop-blur-xl border border-blue-100 p-8 rounded-[2rem] shadow-lg hover:shadow-2xl transition-all border-b-4 border-b-blue-500">
+                            <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/0.webp" class="w-full aspect-square object-cover rounded-2xl mb-6 group-hover:scale-105 transition-all">
+                            <h4 class="text-xl font-black text-blue-600 mb-2 text-center">백야</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">명예와 실적 중심의 엘리트 집단. 협회와 긴밀히 협력하며, 가장 효율적이고 정돈된 공략을 지향합니다.</p>
+                        </div>
+
+                        <div class="group bg-white/70 backdrop-blur-xl border border-red-100 p-8 rounded-[2rem] shadow-lg hover:shadow-2xl transition-all border-b-4 border-b-red-500">
+                            <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/1.webp" class="w-full aspect-square object-cover rounded-2xl mb-6 group-hover:scale-105 transition-all">
+                            <h4 class="text-xl font-black text-red-600 mb-2 text-center">청룡</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">압도적 화력과 수익 중심의 전투 특화 조직. 대형 게이트 공략의 선두에서 현장 실전력을 증명합니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-8 bg-white/60 backdrop-blur-md border border-white/40 rounded-[2.5rem] shadow-sm flex flex-col justify-center">
+                        <h3 class="orbitron text-lg font-bold text-blue-600 mb-4 flex items-center">
+                            <span class="w-2 h-2 bg-blue-600 rounded-full mr-2"></span> INTERFACE
+                        </h3>
+                        <ul class="space-y-3 text-sm text-slate-600">
+                            <li><b class="text-slate-800">내장 시스템:</b> 의식 연동 반투명 홀로그램</li>
+                            <li><b class="text-slate-800">외부 단말기:</b> 협회 지급 공용 장비 (퀘스트·마켓용)</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-8 bg-slate-900 text-white rounded-[2.5rem] space-y-4">
+                        <h3 class="orbitron text-lg font-bold text-blue-400 uppercase tracking-widest">Gate Info</h3>
+                        <ul class="text-sm space-y-2 opacity-80">
+                            <li>• <b class="text-white">측정 기준:</b> 단독 공략 시 생존 가능성</li>
+                            <li>• <b class="text-white">레드 게이트:</b> 난이도 급상승 및 공간 왜곡 발생</li>
+                            <li>• <b class="text-white">이변 징후:</b> 온도 역전, 소음 소실 등 전조 현상</li>
+                        </ul>
+                    </div>
+
+                    <div class="p-8 bg-white border border-slate-200 rounded-[2.5rem] space-y-4 shadow-sm md:col-span-2">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div>
+                                <h3 class="orbitron text-lg font-bold text-slate-800 uppercase tracking-widest">Hunter Rank</h3>
+                                <p class="text-xs text-slate-500 mt-1">당신의 등급은 곧, 이 세계에서 허용된 힘의 크기입니다.</p>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-slate-100 rounded-full text-[10px] font-bold text-slate-400">F-E: 생존 보조</span>
+                                <span class="px-3 py-1 bg-slate-100 rounded-full text-[10px] font-bold text-slate-600">D-C: 정예 보병</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-[10px] font-bold">B-A: 전장 지배자</span>
+                                <span class="px-3 py-1 bg-slate-900 text-white rounded-full text-[10px] font-bold animate-pulse">S: 인외(人外)의 영역</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
 
         <main id="section-factions" class="content-section">
             <div class="flex gap-2 overflow-x-auto pb-4 mb-4 custom-scroll sticky top-0 z-20 bg-white/80 backdrop-blur-sm -mx-4 px-4 pt-2">
